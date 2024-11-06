@@ -42,9 +42,9 @@ public class App extends android.app.Application {
                 .networkModule(new NetworkModule(BASEURL))
                 .appModule(new AppModule(App.from(this)))
                 .build().inject(this);
-        //Timber.plant(new Timber.DebugTree());
-        AppConfig.getInstance().init(this);
 
+        TimberUtils.configTimber();
+        AppConfig.getInstance().init(this);
 
         setBaseURL();
 

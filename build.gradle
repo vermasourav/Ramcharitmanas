@@ -31,10 +31,16 @@ buildscript {
         gsonVersion = '2.3.0'
         firebaseVersion = '11.0.4'
         okhttpVersion = '4.4.0'
+        kotlin_version = '2.0.21'
     }
     dependencies {
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${nav_version}"
-        classpath 'com.google.firebase:perf-plugin:1.4.2'  // Performance Monitoring plugin
+        classpath 'com.google.firebase:perf-plugin:1.4.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // Performance Monitoring plugin
+    }
+    repositories {
+        mavenCentral()
     }
 }
 plugins {
