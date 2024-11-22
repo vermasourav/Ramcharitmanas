@@ -15,7 +15,9 @@
     <string name="ads_unit_id">ca-app-pub-5937141550883860/8603707777</string>
     <bool name="feature_ads">false</bool>
     <bool name="feature_splash">true</bool>
+    <bool name="feature_version_check">true</bool>
     <bool name="feature_onboarding">true</bool>
+    <bool name="feature_ux_tagging">true</bool>
 
     <bool name="feature_menu_one">true</bool>
     <bool name="feature_menu_two">true</bool>

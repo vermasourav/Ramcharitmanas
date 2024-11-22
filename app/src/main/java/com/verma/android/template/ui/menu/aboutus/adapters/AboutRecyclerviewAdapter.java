@@ -47,7 +47,6 @@ public class AboutRecyclerviewAdapter extends RecyclerView.Adapter<AboutRecycler
 
         try {
             new ImageSupport().setImageWithGlide(context, member.getImageUrl(), holder.imageView);
-            //Picasso.get().load(member.getImageUrl()).placeholder(R.drawable.ic_face_profile_grey600_48dp).into(holder.imageView);
         } catch (Exception e) {
             Timber.e("onBindViewHolder: %s", e.toString());
         }
