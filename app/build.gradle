@@ -119,7 +119,7 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-perf")
-    implementationVersion -2 ("com.google.firebase:firebase-config")
+    implementation("com.google.firebase:firebase-config")
     implementation("com.google.firebase:firebase-database")
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
