@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -31,8 +32,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import timber.log.Timber;
+
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity implements SharedKey {
+    private static final String TAG = "SplashActivity";
     public int splashTimeOut = 1000;
 
     //Animations
@@ -176,7 +180,7 @@ public class SplashActivity extends AppCompatActivity implements SharedKey {
             });
 
         }catch (Exception e){
-            e.printStackTrace();
+            Timber.tag(TAG).e("checkForUpdate: %s", e.getMessage());
             startSplash();
         }
     }

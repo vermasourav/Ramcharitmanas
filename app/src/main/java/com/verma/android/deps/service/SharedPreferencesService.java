@@ -38,7 +38,7 @@ public class SharedPreferencesService {
             value = pValue;
         }
         edit.putBoolean(pKeyName, value);
-        edit.commit();
+        edit.apply();
     }
 
     public boolean getBoolean(String pKeyName, Boolean pDefaultValue) {

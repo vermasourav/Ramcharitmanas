@@ -17,7 +17,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -26,14 +25,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.verma.android.common.AppConfig;
-import com.verma.android.template.App;
 import com.verma.android.template.BuildConfig;
-import com.verma.android.template.MobileAdsManager;
+//import com.verma.android.template.MobileAdsManager;
 import com.verma.android.template.R;
+import com.verma.android.template.databinding.ActivityMainBinding;
 import com.verma.android.template.ui.rate.AppRate;
 import com.verma.android.template.ui.rate.StoreType;
 
@@ -45,28 +43,36 @@ import timber.log.Timber;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private NavigationView navigationView;
     private AppBarConfiguration mAppBarConfiguration;
     private ActionBarDrawerToggle aToggle;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         try {
-            setSupportActionBar(toolbar);
-            FloatingActionButton fab = findViewById(R.id.fab);
-            fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show());
-           // fab.setVisibility(View.GONE);
-            DrawerLayout drawer = findViewById(R.id.drawer_layout);
-            navigationView = findViewById(R.id.nav_view);
+            setSupportActionBar(binding.appBarMain.toolbar);
+
+            binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+                            .setAnchorView(R.id.fab).show();
+                }
+            });
+            DrawerLayout drawer = binding.drawerLayout;
+            NavigationView navigationView = binding.navView;
+            // Passing each menu ID as a set of Ids because each
+            // menu should be considered as top level destinations.
+            aToggle = new ActionBarDrawerToggle(this, drawer, binding.appBarMain.toolbar, android.R.string.ok, android.R.string.ok);
             //navigationView.getHeaderView(0).setVisibility(View.GONE);
 
-            aToggle = new ActionBarDrawerToggle(this, drawer, toolbar, android.R.string.ok, android.R.string.ok);
             mAppBarConfiguration = new AppBarConfiguration.Builder(
                     R.id.nav_home,
                     R.id.nav_one,
@@ -88,8 +94,9 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(navigationView, navController);
 
-            initAds();
+            //initAds();
            // setupBackPress();
+
         } catch (Exception e) {
             //DO Nothing
             Timber.d("onCreate: %s", e.getMessage());
@@ -112,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAds() {
+        Timber.tag(TAG).d("initAds: ");
         //DO Nothing
         // MobileAdsManager.getInstance().initAds(this, findViewById(R.id.adView));
         // MobileAdsManager.getInstance().showAds(findViewById(R.id.adView));
@@ -167,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(ContextCompat.getColor(this, android.R.color.holo_red_light));
         spanString.setSpan(foregroundColorSpan, 0, spanString.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 
-        Menu menu = navigationView.getMenu();
+        Menu menu = binding.navView.getMenu();
         menu.findItem(R.id.nav_item_version).setTitle(spanString);
 
     }
@@ -191,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupMenu() {
-        Menu menu = navigationView.getMenu();
+        Menu menu = binding.navView.getMenu();
         menu.findItem(R.id.nav_one).setVisible(AppConfig.getInstance().featureMenuOne);
         menu.findItem(R.id.nav_two).setVisible(AppConfig.getInstance().featureMenuTwo);
         menu.findItem(R.id.nav_three).setVisible(AppConfig.getInstance().featureMenuThree);
@@ -239,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                DrawerLayout drawer = binding.drawerLayout;
                 if (drawer.isDrawerOpen(GravityCompat.START)) {
                     drawer.closeDrawer(GravityCompat.START);
                 } else {
@@ -270,9 +278,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(R.string.text_exit_request);
         builder.setCancelable(false)
                 .setPositiveButton(getString(android.R.string.ok),
-                        (dialog, which) -> {
-                            finish();
-                        }
+                        (dialog, which) -> finish()
                 )
                 .setNegativeButton(getString(android.R.string.no), null);
         //builder.show();

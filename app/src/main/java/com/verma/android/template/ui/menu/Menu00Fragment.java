@@ -73,7 +73,7 @@ public class Menu00Fragment extends MenuBaseFragment {
         setup.setDebugLog(true);
         setup.setCountDisplay(true);
         setup.setImageDisplay(true);
-        setup.setIsDiscriptionDisplay(false);
+        setup.setIsDiscriptionDisplay(true);
         dashBoardManager.setSetup(setup);
 
         ArrayList<DashBoardItem> dashBoardItems = dashBoardManager.getDashBoardItems(getContext(),"content_dashboard.json");

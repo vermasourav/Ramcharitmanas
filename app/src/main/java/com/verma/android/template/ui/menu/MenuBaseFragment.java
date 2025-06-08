@@ -63,7 +63,7 @@ public abstract class MenuBaseFragment extends Fragment {
         bundle.putString(FirebaseAnalytics.Param.SCREEN_CLASS, super.getClass().getSimpleName());
         //TODO Enable it
         //FirebaseAnalytics.getInstance(requireContext()).logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle);
-        Log.d(TAG, "setAnalytics: getScreenName - "+ getScreenName() + " Classname " +super.getClass().getSimpleName());
+        Timber.tag(TAG).d("setAnalytics: getScreenName - " + getScreenName() + " Classname " + super.getClass().getSimpleName());
 
     }
     @Override

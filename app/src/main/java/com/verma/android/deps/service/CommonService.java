@@ -11,6 +11,7 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class CommonService implements INetworkCall {
     private static final String TAG = "CommonService";
@@ -23,7 +24,7 @@ public class CommonService implements INetworkCall {
     }
 
     public Subscription requestSample(final ICallBack.CallBack callback, SampleRequest sampleRequest) {
-        Log.d(TAG, "requestAuthenticate: " + sampleRequest.toString());
+        Timber.tag(TAG).d("requestAuthenticate: %s", sampleRequest.toString());
         return networkService.requestSample(App.getInstance().API_PATH, sampleRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

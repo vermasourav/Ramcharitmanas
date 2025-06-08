@@ -3,12 +3,12 @@
     {
       "from": "","description": "This is Residents",
       "visible": true, "name": "Residents",
-      "image_url": "https://s3.rdbuz.com/Images/rdc/rdc-redbus-logo.webp",
+      "image_url": "https://cdn-icons-png.flaticon.com/512/566/566245.png",
       "childs": [
-        {"visible": true, "id": 1300, "name": "A", "description": "Description of A", "thumbnail": ""},
-        {"visible": true, "id": 13001, "name": "Temperature"},
-        {"visible": true, "id": 13002, "name": "Angle"},
-        {"visible": true, "id": 13002, "name": "Torque"}
+        {"visible": true, "id": 13001, "name": "A", "description": "Description of A", "thumbnail": ""},
+        {"visible": true, "id": 13002, "name": "Temperature"},
+        {"visible": true, "id": 13003, "name": "Angle"},
+        {"visible": true, "id": 13004, "name": "Torque"}
       ]
     },{
       "from": "",

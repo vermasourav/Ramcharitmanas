@@ -1,18 +1,21 @@
 package com.verma.android.deps;
 
+import android.annotation.SuppressLint;
+
 import com.verma.android.deps.models.base.SenderInfo;
 import com.verma.android.template.BuildConfig;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 public class Constant {
 
-    public static final Charset UTF_8 = Charset.forName("UTF-8");
+    public static final Charset UTF_8 = StandardCharsets.UTF_8;
     private static Constant instance;
-    private static String DEFAULT_DATE_FORMATE = "dd/MM/yyyy hh.mm aa";
+    private static String DEFAULT_DATE_FORMAT = "dd/MM/yyyy hh.mm aa";
     String URL_PROFILE_IMG = "http://graph.facebook.com/672467397/picture?type=square";
     String AUTH_KEY_1 = "sourav";
 
@@ -54,6 +57,7 @@ public class Constant {
         return builder.toString();
     }
 
+    @SuppressLint("SimpleDateFormat")
     public String getTime() {
         SimpleDateFormat s = new SimpleDateFormat("ddMMyyyyhhmmss");
         return s.format(new Date());

@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.net.ssl.SSLHandshakeException;
 
 import retrofit2.HttpException;
+import timber.log.Timber;
 
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 
@@ -29,7 +30,7 @@ public class NetworkError extends Throwable {
     public NetworkError(Throwable e) {
         super(e);
         this.error = e;
-        Log.i("ERROR", e.toString());
+        Timber.tag("ERROR").i(e.toString());
     }
 
     @Override

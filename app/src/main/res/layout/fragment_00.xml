@@ -16,6 +16,7 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/LayoutViewTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -23,9 +24,10 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewTop"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="35dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:visibility="gone"
             tools:visibility="visible"
             tools:text="@tools:sample/full_names"

@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 
 import com.verma.android.template.R;
 
+import timber.log.Timber;
+
 public class AppConfig {
 
     private static final AppConfig ourInstance = new AppConfig();
@@ -34,7 +36,7 @@ public class AppConfig {
 
     private AppConfig() {
         //Do Nothing
-        Log.d(TAG, "AppConfig: ");
+        Timber.tag(TAG).d("AppConfig: ");
     }
 
     public static AppConfig getInstance() {
@@ -65,7 +67,7 @@ public class AppConfig {
         featureMenuVersion = isFeaturesEnable(pContext, R.bool.feature_menu_version);
 
         if(Utils.IS_DEBUG){
-            Log.d(TAG, "AppConfig: "+ this.toString());
+            Timber.tag(TAG).d("AppConfig: %s", this.toString());
         }
 
     }

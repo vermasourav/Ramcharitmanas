@@ -12,6 +12,8 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
+import android.util.Log;
+
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.rule.GrantPermissionRule;
@@ -45,6 +47,7 @@ public class SplashActivityTest extends BaseAction {
     @Before
     public void init() {
         super.init();
+        Log.d(TAG, "init: ");
     }
 
     @Test

@@ -96,12 +96,12 @@ public class Utils {
             }
             jsonString = writer.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            Timber.tag(TAG).e("readFile:IOException  %s", e.getMessage());
         } finally {
             try {
                 is.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                Timber.tag(TAG).e("readFile: IOException %s", e.getMessage());
             }
         }
         return jsonString;
