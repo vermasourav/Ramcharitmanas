@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAds() {
+        //DO Nothing
         // MobileAdsManager.getInstance().initAds(this, findViewById(R.id.adView));
         // MobileAdsManager.getInstance().showAds(findViewById(R.id.adView));
     }

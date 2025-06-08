@@ -1,10 +1,15 @@
 {
   "groups": [
     {
-      "from": "",
+      "from": "","description": "This is Residents",
       "visible": true, "name": "Residents",
-      "image_url": "",
-      "childs": []
+      "image_url": "https://s3.rdbuz.com/Images/rdc/rdc-redbus-logo.webp",
+      "childs": [
+        {"visible": true, "id": 1300, "name": "A", "description": "Description of A", "thumbnail": ""},
+        {"visible": true, "id": 13001, "name": "Temperature"},
+        {"visible": true, "id": 13002, "name": "Angle"},
+        {"visible": true, "id": 13002, "name": "Torque"}
+      ]
     },{
       "from": "",
       "visible": true, "name": "Notice Board",
@@ -33,7 +38,7 @@
     },{
       "from": "",
       "visible": true, "name": "Profile",
-      "image_url": "https://www.nicepng.com/png/detail/202-2024687_profile-icon-for-the-politics-category-profile-icon.png",
+      "image_url": "https://secure.gravatar.com/avatar/8ac5f1a234f3236eb785fd93259a3882e5727859a364a21464d96d191fa33b59",
       "childs": []
     }
   ]

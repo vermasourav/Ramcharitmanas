@@ -13,11 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.core.view.MenuProvider;
 import androidx.databinding.DataBindingUtil;
 
+import com.google.gson.Gson;
 import com.verma.android.dashboard.DashBoardItem;
 import com.verma.android.dashboard.DashBoardManager;
 import com.verma.android.dashboard.DashboardClickListener;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.Fragment00Binding;
+import com.verma.android.dashboard.Setup;
 
 import java.util.ArrayList;
 
@@ -66,6 +68,14 @@ public class Menu00Fragment extends MenuBaseFragment {
     private void setupDashboard() {
         setupGrid();
         DashBoardManager dashBoardManager = new DashBoardManager();
+
+        Setup setup  = new Setup();
+        setup.setDebugLog(true);
+        setup.setCountDisplay(true);
+        setup.setImageDisplay(true);
+        setup.setIsDiscriptionDisplay(false);
+        dashBoardManager.setSetup(setup);
+
         ArrayList<DashBoardItem> dashBoardItems = dashBoardManager.getDashBoardItems(getContext(),"content_dashboard.json");
         //Collections.sort(dashBoardItems, Comparator.comparing(o -> o.getName().toLowerCase()));
         dashBoardManager.setupDashboard(getContext(),binding.dashBoardGrid,2,dashBoardItems,dashboardClickListener);
@@ -73,8 +83,9 @@ public class Menu00Fragment extends MenuBaseFragment {
 
     DashboardClickListener dashboardClickListener = (v, dashBoardItem) -> {
         if(dashBoardItem.getChilds() != null){
+            String childs = new Gson().toJson(dashBoardItem.getChilds());
+            Timber.tag(TAG).d("childs: %s  ",childs);
             Timber.tag(TAG).d("onClick: %s- %s ",dashBoardItem.getId(), dashBoardItem.getName());
-
         }
     };
 
