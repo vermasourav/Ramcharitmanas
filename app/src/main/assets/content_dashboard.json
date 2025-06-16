@@ -1,44 +1,44 @@
 {
   "groups": [
     {
-      "from": "","description": "This is Residents",
+      "description": "This is Residents",
       "visible": true, "name": "Residents",
       "image_url": "https://cdn-icons-png.flaticon.com/512/566/566245.png",
       "childs": [
-        {"visible": true, "id": 13001, "name": "A", "description": "Description of A", "thumbnail": ""},
-        {"visible": true, "id": 13002, "name": "Temperature"},
-        {"visible": true, "id": 13003, "name": "Angle"},
-        {"visible": true, "id": 13004, "name": "Torque"}
+        {"visible": true, "id": 13001, "name": "Resident and Ordinarily Resident", "description": "", "thumbnail": ""},
+        {"visible": true, "id": 13002, "name": "Resident but Not Ordinarily Resident"},
+        {"visible": true, "id": 13003, "name": "Non- Resident"},
+        {"visible": true, "id": 13004, "name": "(ROR) (RNOR) (NR)"}
       ]
     },{
-      "from": "",
       "visible": true, "name": "Notice Board",
-      "image_url": "",
+      "image_url": " ",
       "childs": []
     },{
-      "from": "",
+
       "visible": true, "name": "Bill",
-      "image_url": "",
-      "childs": []
+      "image_url": "https://www.efghfoods.com/wp-content/uploads/2020/11/Testimonials.png",
+      "childs": [
+        {"visible": true, "id": 15001, "name": "Ordinary Bills","thumbnail": ""},
+        {"visible": true, "id": 15002, "name": "Money Bills"},
+        {"visible": true, "id": 15003, "name": "Financial Bills"},
+        {"visible": true, "id": 15004, "name": "Constitution Amendment Bills"}
+      ]
     },{
-      "from": "",
       "visible": true, "name": "Help Desk",
-      "image_url": "",
+      "image_url": " ",
       "childs": []
     },{
-      "from": "",
       "visible": true, "name": "Emergency No's",
-      "image_url": "",
+      "image_url": " ",
       "childs": []
     },{
-      "from": "",
       "visible": true, "name": "Resident Directory",
-      "image_url": "",
+      "image_url": " ",
       "childs": []
     },{
-      "from": "",
       "visible": true, "name": "Profile",
-      "image_url": "https://secure.gravatar.com/avatar/8ac5f1a234f3236eb785fd93259a3882e5727859a364a21464d96d191fa33b59",
+      "image_url": "https://www.efghfoods.com/wp-content/uploads/2017/08/Lady-Lady.png",
       "childs": []
     }
   ]

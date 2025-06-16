@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-            String shareMessage = "\nLet me recommend you this application\n\n";
-            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + Utils.getInstance().getApplicationId ()+ "\n\n";
+            String shareMessage = "\nLet me recommend you this application\n\n" +
+                    "https://play.google.com/store/apps/details?id=" + Utils.getInstance().getApplicationId() + "\n\n";
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
             startActivity(Intent.createChooser(shareIntent, "choose one"));
         } catch (Exception e) {
@@ -119,10 +119,12 @@ public class MainActivity extends AppCompatActivity {
         // MobileAdsManager.getInstance().showAds(findViewById(R.id.adView));
     }
 
-
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        menu.findItem(R.id.action_rate_us).setVisible(AppConfig.getInstance().featureRateUs);
+        boolean isRateUs = AppConfig.getInstance().featureRateUs && AppRate.with(this).shouldShowRateDialog();
+        getMenuInflater().inflate(R.menu.menu_all_screen, menu);
+        menu.findItem(R.id.action_home).setVisible(true);
+        menu.findItem(R.id.action_rate_us).setVisible(isRateUs);
         menu.findItem(R.id.action_share_me).setVisible(AppConfig.getInstance().featureShareMenu);
         return true;
     }
@@ -131,22 +133,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (aToggle.onOptionsItemSelected(item)) {
-            if (item.getItemId() == R.id.nav_four) {
-                shareMe();
-                return false;
-            }
             return true;
-        } else {
-            if (item.getItemId() == R.id.action_rate_us) {
-                addRateMe();
-                return true;
-            } else if (item.getItemId() == R.id.action_share_me) {
-                shareMe();
-                return true;
-            }
+        }
+        int id = item.getItemId();
+        if (id == R.id.action_home) {
+            gotoHome();
+            return true;
+        }
+        if (id == R.id.action_rate_us) {
+            addRateMe();
+            return true;
+        } else if (id == R.id.action_share_me) {
+            shareMe();
+            return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
 
@@ -159,8 +160,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        displayVersion();
         setupMenu();
+        displayVersion();
     }
 
     private void displayVersion() {
@@ -172,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
 
         Menu menu = binding.navView.getMenu();
         menu.findItem(R.id.nav_item_version).setTitle(spanString);
-
     }
 
     public void hideKeyboard(View view) {
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         } catch (Exception ignored) {
-            //DO Nothing
+            Timber.e(ignored, "Error hiding keyboard");
         }
     }
 
@@ -189,7 +189,8 @@ public class MainActivity extends AppCompatActivity {
             String verName = Utils.getInstance().getVersionName();
             return getString(R.string.app_name) + " Ver " + verName;
         } catch (Exception e) {
-            return "";
+            Timber.e(e, "Error getting version name");
+            return getString(R.string.app_name) + " Ver N/A";
         }
     }
 
@@ -207,9 +208,11 @@ public class MainActivity extends AppCompatActivity {
         menu.findItem(R.id.nav_privacy_policy).setVisible(AppConfig.getInstance().featureMenuPrivacy);
         menu.findItem(R.id.nav_terms_of_service).setVisible(AppConfig.getInstance().featureMenuTermsOfService);
         menu.findItem(R.id.nav_item_version).setVisible(AppConfig.getInstance().featureMenuVersion);
-
     }
 
+    private void gotoHome() {
+        findViewById(R.id.nav_home).performClick();
+    }
     private void addRateMe() {
         AppRate.with(this)
                 .setStoreType(StoreType.GOOGLEPLAY) //default is Google, other option is Amazon
@@ -220,10 +223,10 @@ public class MainActivity extends AppCompatActivity {
                 .setDebug(true) // default false.
                 .setCancelable(false) // default false.
                 .setOnClickButtonListener(which -> Timber.d("addRateMe: %s", which))
-                .setTitle(R.string.new_rate_dialog_title)
-                .setTextLater(R.string.new_rate_dialog_later)
-                .setTextNever(R.string.new_rate_dialog_never)
-                .setTextRateNow(R.string.new_rate_dialog_ok)
+                .setTitle(R.string.rate_dialog_title)
+                .setTextLater(R.string.rate_dialog_later)
+                .setTextNever(R.string.rate_dialog_never)
+                .setTextRateNow(R.string.rate_dialog_ok)
                 .monitor();
         AppRate.showRateDialogIfMeetsConditions(this);
     }
@@ -234,9 +237,7 @@ public class MainActivity extends AppCompatActivity {
                 pMessage,
                 Snackbar.LENGTH_SHORT
         ).show();
-
     }
-
 
     public void setupBackPress() {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
@@ -247,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                     drawer.closeDrawer(GravityCompat.START);
                 } else {
                     showExitAlert();
-                    // Back is pressed... Finishing the activity
+                    // If drawer is not open, show exit confirmation
                 }
             }
         });
@@ -260,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton(getString(android.R.string.ok), (dialog, which) -> finish())
                 .setNegativeButton(getString(android.R.string.no), null);
         builder.show();
+        Timber.d("Exit alert dialog shown.");
     }
 
     public Context getContext() {
@@ -272,9 +274,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.text_exit_request);
         builder.setCancelable(false)
-                .setPositiveButton(getString(android.R.string.ok),
-                        (dialog, which) -> finish()
-                )
+                .setPositiveButton(getString(android.R.string.ok), (dialog, which) -> finish())
                 .setNegativeButton(getString(android.R.string.no), null);
         //builder.show();
         super.onBackPressed();

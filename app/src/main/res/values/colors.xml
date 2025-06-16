@@ -4,7 +4,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    
     <color name="colorPrimary">@color/blue500</color>
     <color name="colorPrimaryDark">@color/blue400</color>
     <color name="colorSecondary">@color/blue300</color>
@@ -25,8 +24,6 @@
 
     <!-- Status bar -->
     <color name="black30">#4D000000</color>
-
-
 
 
 </resources>

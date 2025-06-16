@@ -8,6 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import com.verma.android.common.AppConfig;
+
 
 import androidx.annotation.NonNull;
 import androidx.core.view.MenuProvider;
@@ -17,11 +19,13 @@ import com.google.gson.Gson;
 import com.verma.android.dashboard.DashBoardItem;
 import com.verma.android.dashboard.DashBoardManager;
 import com.verma.android.dashboard.DashboardClickListener;
+import com.verma.android.dashboard.databinding.FragmentDashboardBinding;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.Fragment00Binding;
 import com.verma.android.dashboard.Setup;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -33,6 +37,8 @@ public class Menu00Fragment extends MenuBaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_00, container, false);
+        //binding = Fragment00Binding.inflate(getLayoutInflater());
+
         setOptionMenu(true);
         return binding.getRoot();
     }
@@ -43,6 +49,9 @@ public class Menu00Fragment extends MenuBaseFragment {
             @Override
             public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
                 menuInflater.inflate(R.menu.main00, menu);
+                menu.findItem(R.id.action_home).setVisible(false);
+                menu.findItem(R.id.action_share_me).setVisible(false);
+                menu.findItem(R.id.action_rate_us).setVisible(false);
             }
 
             @Override
@@ -63,43 +72,39 @@ public class Menu00Fragment extends MenuBaseFragment {
     @Override
     public void initComponent() {
         binding.textViewHome.setText(getScreenName());
+        binding.textViewHome.setVisibility(View.GONE);
         setupDashboard();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setTitle(getScreenName());
+    }
 
     private void setupDashboard() {
-        setupGrid();
+
         DashBoardManager dashBoardManager = new DashBoardManager();
 
-        Setup setup  = new Setup();
+        Setup setup    = new Setup();
         setup.setDebugLog(true);
         setup.setCountDisplay(true);
         setup.setImageDisplay(true);
-        setup.setIsDiscriptionDisplay(true);
+        setup.setIsDiscriptionDisplay(false);
         dashBoardManager.setSetup(setup);
 
-        ArrayList<DashBoardItem> dashBoardItems = dashBoardManager.getDashBoardItems(getContext(),"content_dashboard.json");
-        //Collections.sort(dashBoardItems, Comparator.comparing(o -> o.getName().toLowerCase()));
-        dashBoardManager.setupDashboard(getContext(),binding.dashBoardGrid,2,dashBoardItems,dashboardClickListener);
+         ArrayList<DashBoardItem> dashBoardItems = dashBoardManager.getDashBoardItems(getContext(),"content_dashboard.json", false);
+        dashBoardManager.setupDashboard(getContext(),dashBoardManager.getGridLayout(binding.childBoardGrid),3,dashBoardItems,dashboardClickListener);
     }
 
     DashboardClickListener dashboardClickListener = (v, dashBoardItem) -> {
-        if(dashBoardItem.getChilds() != null){
+        Timber.tag(TAG).d("onClick: %s- %s ",dashBoardItem.getId(), dashBoardItem.getName());
+        ((MainActivity) requireActivity()).displayMessage(dashBoardItem.getName());
+        if(null != dashBoardItem.getChilds()){
             String children = new Gson().toJson(dashBoardItem.getChilds());
             Timber.tag(TAG).d("children: %s  ",children);
             Timber.tag(TAG).d("onClick: %s- %s ",dashBoardItem.getId(), dashBoardItem.getName());
         }
     };
-
-    private void setupGrid() {
-        int orientation = getResources().getConfiguration().orientation;
-        int spanCount;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            spanCount = 2;
-        } else {
-            spanCount = 3;
-        }
-        binding.dashBoardGrid.setColumnCount(spanCount);
-    }
 
 }

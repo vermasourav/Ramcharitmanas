@@ -9,7 +9,12 @@
         <!-- Customize your theme here. -->
 
         <item name="android:windowBackground">@color/appBackground</item>
+        <item name="android:itemBackground">@color/appBackground</item>
+        <item name="android:colorBackground">@color/appBackground</item>
+        <item name="android:editTextBackground">@color/appBackground</item>
+
         <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:editTextColor">@color/colorPrimary</item>
         <item name="colorAccent">@color/yellow700</item>
 
     </style>

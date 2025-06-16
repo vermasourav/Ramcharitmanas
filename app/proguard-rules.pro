@@ -24,4 +24,6 @@
 -keep class timber.log.Timber { *; }
 -keep class timber.log.Timber$Tree { *; }
 -keep class timber.log.Timber$DebugTree { *; }
+-keep class androidx.databinding.** { *; }
+-keep class * extends androidx.databinding.DataBinderMapper { *; }
 

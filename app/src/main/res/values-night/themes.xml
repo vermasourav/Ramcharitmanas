@@ -10,6 +10,7 @@
         <item name="android:statusBarColor">@color/black30</item>
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/appBackground</item>
+        <item name="android:popupBackground">@color/appBackground</item>
         <item name="android:textColor">@color/colorPrimary</item>
 
     </style>
