@@ -8,6 +8,7 @@ object TimberUtils {
     fun configTimber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+            Timber.d("Timber DebugTree planted")
         }
     }
 }

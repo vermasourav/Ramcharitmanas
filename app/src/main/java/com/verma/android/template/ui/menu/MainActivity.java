@@ -28,14 +28,13 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.verma.android.common.AppConfig;
-import com.verma.android.template.BuildConfig;
+import com.verma.android.template.App;
 //import com.verma.android.template.MobileAdsManager;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.ActivityMainBinding;
 import com.verma.android.template.ui.rate.AppRate;
 import com.verma.android.template.ui.rate.StoreType;
 
-import org.jetbrains.annotations.NotNull;
 
 import timber.log.Timber;
 
@@ -57,14 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             setSupportActionBar(binding.appBarMain.toolbar);
-
-            binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null)
-                            .setAnchorView(R.id.fab).show();
-                }
+            binding.appBarMain.fab.setOnClickListener(view -> {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .setAnchorView(R.id.fab).show();
             });
             DrawerLayout drawer = binding.drawerLayout;
             NavigationView navigationView = binding.navView;
@@ -93,9 +88,8 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(navigationView, navController);
-
             //initAds();
-           // setupBackPress();
+            // setupBackPress();
 
         } catch (Exception e) {
             //DO Nothing
@@ -110,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
             String shareMessage = "\nLet me recommend you this application\n\n";
-            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + App.getInstance().getApplicationId ()+ "\n\n";
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
             startActivity(Intent.createChooser(shareIntent, "choose one"));
         } catch (Exception e) {
@@ -135,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("NonConstantResourceId")
     @Override
-    public boolean onOptionsItemSelected(@NotNull MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (aToggle.onOptionsItemSelected(item)) {
             if (item.getItemId() == R.id.nav_four) {
                 shareMe();
@@ -143,10 +137,10 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         } else {
-            if(item.getItemId() == R.id.action_rate_us){
+            if (item.getItemId() == R.id.action_rate_us) {
                 addRateMe();
                 return true;
-            }else if(item.getItemId() == R.id.action_share_me){
+            } else if (item.getItemId() == R.id.action_share_me) {
                 shareMe();
                 return true;
             }
@@ -154,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -191,8 +186,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String getVersion() {
         try {
-            String verName = BuildConfig.VERSION_NAME;
-            return getString(R.string.app_name) + " Version-" + verName;
+            String verName = App.getInstance().getVersionName();
+            return getString(R.string.app_name) + " Ver " + verName;
         } catch (Exception e) {
             return "";
         }
@@ -243,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void setupBackPress(){
+    public void setupBackPress() {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -267,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return this;
     }
 
@@ -284,4 +279,5 @@ public class MainActivity extends AppCompatActivity {
         //builder.show();
         super.onBackPressed();
     }
+
 }

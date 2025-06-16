@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ /**
   ~  * Created by VERMA on 1/2/21 10:11 AM
   ~  * Copyright (c) 2021 . All rights reserved.
@@ -8,9 +7,11 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
         <import type="android.text.TextUtils" />
         <variable
@@ -18,136 +19,150 @@
             type="com.verma.android.common.viewmodel.AboutUsViewModel" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/srl"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/about_main"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:background="@color/white">
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/parentLL"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/appBackground"
-            android:layout_height="wrap_content">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
 
-            <LinearLayout
-                android:id="@+id/parentLL"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/appBackground"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="visible">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/officeLogoImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="8dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/empty"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_launcher" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="38sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:fontFamily="casual" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appSubtitle"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_name"
+                    android:visibility="visible"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@color/appBackground"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@android:color/white"
+                    android:gravity="center">
 
-
-                    <ImageView
-                        android:id="@+id/officeLogoImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="175dp"
-                        android:layout_marginBottom="8dp"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@string/empty"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_launcher" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/googlePlayLogo"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@android:color/white"
-                        android:gravity="center">
+                        android:layout_weight="1"
+                        android:contentDescription="@string/empty"
+                        android:onClick="@{(view)-> viewModel.onClickGooglePlay(view)}"
+                        android:src="@drawable/ic_about_google_play_black_36dp"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getGooglePlayUrl()) ? View.GONE : View.VISIBLE}"
+                        app:tint="#0097A7" />
 
-                        <ImageView
-                            android:id="@+id/googlePlayLogo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/empty"
-                            android:onClick="@{(view)-> viewModel.onClickGooglePlay(view)}"
-                            android:src="@drawable/ic_about_google_play_black_36dp"
-                            app:tint="#0097A7"
-                            android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getGooglePlayUrl()) ? View.GONE : View.VISIBLE}" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/facebookLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/empty"
+                        android:onClick="@{(view)-> viewModel.onClickFacebook(view)}"
+                        android:src="@drawable/ic_about_facebook_black_36dp"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getFacebookPageUrl()) ? View.GONE : View.VISIBLE}"
+                        app:tint="#1976D2" />
 
-                        <ImageView
-                            android:id="@+id/facebookLogo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/empty"
-                            android:onClick="@{(view)-> viewModel.onClickFacebook(view)}"
-                            android:src="@drawable/ic_about_facebook_black_36dp"
-                            app:tint="#1976D2"
-                            android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getFacebookPageUrl()) ? View.GONE : View.VISIBLE}" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/groupLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/empty"
+                        android:onClick="@{(view)-> viewModel.onClickGroup(view)}"
+                        android:src="@drawable/ic_about_account_group_black_36dp"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getGroupUrl()) ? View.GONE : View.VISIBLE}"
+                        app:tint="#FBC02D" />
 
-                        <ImageView
-                            android:id="@+id/groupLogo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/empty"
-                            android:onClick="@{(view)-> viewModel.onClickGroup(view)}"
-                            android:src="@drawable/ic_about_account_group_black_36dp"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/youtubeLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/empty"
+                        android:onClick="@{(view)-> viewModel.onClickYoutube(view)}"
+                        android:src="@drawable/ic_about_youtube_black_36dp"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getYoutubeUrl()) ? View.GONE : View.VISIBLE}"
+                        app:tint="#D32F2F" />
 
-                            app:tint="#FBC02D"
-                            android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getGroupUrl()) ? View.GONE : View.VISIBLE}" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/githubLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/empty"
+                        android:onClick="@{(view)-> viewModel.onClickGithub(view)}"
+                        android:src="@drawable/ic_about_github_circle_black_36dp"
 
-                        <ImageView
-                            android:id="@+id/youtubeLogo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/empty"
-                            android:onClick="@{(view)-> viewModel.onClickYoutube(view)}"
-                            android:src="@drawable/ic_about_youtube_black_36dp"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getGithubUrl()) ? View.GONE : View.VISIBLE}"
+                        app:tint="#303F9F" />
 
-                            app:tint="#D32F2F"
-                            android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getYoutubeUrl()) ? View.GONE : View.VISIBLE}" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/webLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/empty"
+                        android:onClick="@{(view)-> viewModel.onClickWeb(view)}"
+                        android:src="@drawable/ic_about_web_black_36dp"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getWebUrl()) ? View.GONE : View.VISIBLE}"
+                        app:tint="#388E3C" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <ImageView
-                            android:id="@+id/githubLogo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/empty"
-                            android:onClick="@{(view)-> viewModel.onClickGithub(view)}"
-                            android:src="@drawable/ic_about_github_circle_black_36dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/officeAboutRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/appBackground" />
 
-                            app:tint="#303F9F"
-                            android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getGithubUrl()) ? View.GONE : View.VISIBLE}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <ImageView
-                            android:id="@+id/webLogo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/empty"
-                            android:onClick="@{(view)-> viewModel.onClickWeb(view)}"
-                            android:src="@drawable/ic_about_web_black_36dp"
-                            app:tint="#388E3C"
-                            android:visibility="@{TextUtils.isEmpty(viewModel.officeInfo.getWebUrl()) ? View.GONE : View.VISIBLE}" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/officeAboutRecyclerView"
-                    android:layout_width="match_parent"
-                    android:background="@color/appBackground"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

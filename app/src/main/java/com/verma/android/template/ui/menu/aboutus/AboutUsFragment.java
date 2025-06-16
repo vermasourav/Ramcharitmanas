@@ -45,8 +45,6 @@ public class AboutUsFragment extends MenuBaseFragment {
         RecyclerView.Adapter<AboutRecyclerviewAdapter.ViewHolder> adapter = new AboutRecyclerviewAdapter(getContext(), viewModel.members);
         binding.officeAboutRecyclerView.setItemAnimator(new DefaultItemAnimator());
         binding.officeAboutRecyclerView.setAdapter(adapter);
-        binding.srl.setRefreshing(true);
-        binding.srl.setRefreshing(false);
 
     }
 

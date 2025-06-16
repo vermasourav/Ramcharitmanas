@@ -1,29 +1,26 @@
 plugins {
-    id 'com.android.application'
-   // id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
-    id 'org.jetbrains.kotlin.android'
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.kotlin.android)
 }
-apply plugin: "androidx.navigation.safeargs"
-
-apply from: rootProject.file('./app/signing.gradle')
+//apply plugin: "androidx.navigation.safeargs"
+//apply from: rootProject.file('./app/signing.gradle')
 
 android {
     namespace 'com.verma.android.template'
-    compileSdk rootProject.compile_sdk_version
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.verma.android.template"
-        minSdk rootProject.min_sdk_version
-        targetSdk rootProject.target_sdk_version
-        versionCode rootProject.version_code
-        versionName rootProject.version_name
+        minSdk 28
+        targetSdk 35
+        versionCode 10001
+        versionName "1.0.0"
 
-        multiDexEnabled true
-        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        setProperty("archivesBaseName", applicationId + "-v" + versionCode + "(" + versionName + ")")
 
+        vectorDrawables.useSupportLibrary = true
+        setProperty("archivesBaseName", applicationId + "-v" + versionCode + "(" + versionName + ")")
         buildConfigField "int", "LIMIT", "100"
         buildConfigField "String", "BASEURL", "\"http:/192.168.197.1:8080/\""
         buildConfigField "String", "API_PATH", "\"start\""
@@ -31,6 +28,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
         release {
             minifyEnabled true
             shrinkResources true
@@ -39,11 +40,7 @@ android {
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
-            signingConfig signingConfigs.KEY
-        }
-        debug {
-            debuggable true
-            minifyEnabled false
+            //  signingConfig signingConfigs.KEY
         }
     }
     compileOptions {
@@ -52,90 +49,68 @@ android {
     }
     buildFeatures {
         viewBinding true
+        //noinspection DataBindingWithoutKapt
         dataBinding true
         buildConfig true
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = '17'
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation fileTree(dir: "libs", include: ["*.aar"])
-    implementation 'androidx.core:core-ktx:1.16.0'
 
-    // Assertions
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.ext:truth:1.6.0'
-    androidTestImplementation 'com.google.truth:truth:1.4.4'
-    androidTestImplementation ('tools.fastlane:screengrab:2.0.0',{
-        exclude group: 'com.android.support' , module: 'support-annotations'
-    })
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.constraintlayout
+    implementation libs.lifecycle.livedata.ktx
+    implementation libs.lifecycle.viewmodel.ktx
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
+    implementation libs.preference
+    implementation libs.core.ktx
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
-
-    // Espresso dependencies
-    implementation 'com.jraska:falcon:2.2.0'
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
-    androidTestImplementation "androidx.test.espresso:espresso-accessibility:$espresso_version"
-    androidTestImplementation "androidx.test.espresso:espresso-web:$espresso_version"
-    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:$espresso_version"
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
 
 
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // Verma implementation
+    implementation libs.onboarding
+    implementation libs.dashboard
 
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.9.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    // glide implementation
+    implementation libs.glide
+    annotationProcessor libs.glide.compiler
 
+    // timber implementation
+    implementation libs.timber
+    implementation libs.gson
 
-    //Settings
-    implementation "androidx.legacy:legacy-preference-v14:1.0.0"
-    implementation "androidx.preference:preference-ktx:1.2.1"
-
-    // Other
-    implementation "com.jakewharton.timber:timber:$timber_version"
-    implementation "com.google.code.gson:gson:$gson_version"
-
-    implementation "com.google.android.gms:play-services-auth:21.3.0"
-    implementation "com.google.android.gms:play-services-drive:17.0.0"
-    implementation 'com.google.android.gms:play-services-location:21.3.0'
+    // dagger implementation
+    implementation libs.dagger
+    annotationProcessor libs.dagger.compiler
 
 
-    implementation 'com.google.dagger:dagger:2.56.1'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.56.1'
+    // Network implementation
+    implementation(libs.retrofit.core) // Or whatever your alias for retrofit core is
+    implementation(libs.adapter.rxjava) // This must match an alias in libs.versions.toml
+    implementation(libs.rxjava3.core) // Example: if you have an alias for RxJava3
+    implementation(libs.rxjava3.android) // Example: if you have an alias for RxAndroid3
+    implementation libs.converter.gson
+    implementation libs.converter.scalars
+    implementation libs.okhttp
+    implementation libs.logging.interceptor
+
 
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
-    implementation("com.google.firebase:firebase-crashlytics")
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-perf")
-    implementation("com.google.firebase:firebase-config")
-    implementation("com.google.firebase:firebase-database")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.perf)
+    implementation(libs.firebase.config)
+    implementation(libs.firebase.database)
+    androidTestImplementation (libs.screengrab)
 
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
-    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
-    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"
-    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
-    implementation 'io.reactivex:rxandroid:1.2.1'
-    implementation 'io.reactivex:rxjava:1.3.8'
-
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
-    implementation 'commons-io:commons-io:2.18.0'
-
-    implementation "com.github.vermasourav:OnBoarding:1.0.7"
-    implementation "com.github.vermasourav:DashBoard:1.0.16"
 
 }

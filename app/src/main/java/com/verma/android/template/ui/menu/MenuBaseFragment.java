@@ -5,7 +5,6 @@ import static com.verma.android.template.App.BASEURL;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -24,7 +23,6 @@ import com.verma.android.deps.module.AppModule;
 import com.verma.android.deps.module.NetworkModule;
 import com.verma.android.template.App;
 
-import org.jetbrains.annotations.NotNull;
 
 import timber.log.Timber;
 
@@ -73,13 +71,13 @@ public abstract class MenuBaseFragment extends Fragment {
     }
 
     @Override
-    public boolean onContextItemSelected(@NotNull MenuItem item) {
+    public boolean onContextItemSelected(MenuItem item) {
         Timber.d("onContextItemSelected");
         return super.onContextItemSelected(item);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NotNull MenuItem item) {
+    public boolean onOptionsItemSelected( MenuItem item) {
         Timber.d("onOptionsItemSelected");
         return super.onOptionsItemSelected(item);
     }

@@ -59,8 +59,10 @@ public class Menu00Fragment extends MenuBaseFragment {
     public String getScreenName() {
         return getString(R.string.menu_nav_home);
     }
+
     @Override
     public void initComponent() {
+        binding.textViewHome.setText(getScreenName());
         setupDashboard();
     }
 
@@ -83,8 +85,8 @@ public class Menu00Fragment extends MenuBaseFragment {
 
     DashboardClickListener dashboardClickListener = (v, dashBoardItem) -> {
         if(dashBoardItem.getChilds() != null){
-            String childs = new Gson().toJson(dashBoardItem.getChilds());
-            Timber.tag(TAG).d("childs: %s  ",childs);
+            String children = new Gson().toJson(dashBoardItem.getChilds());
+            Timber.tag(TAG).d("children: %s  ",children);
             Timber.tag(TAG).d("onClick: %s- %s ",dashBoardItem.getId(), dashBoardItem.getName());
         }
     };

@@ -28,9 +28,8 @@ public class WebFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(this).get(WebViewModel.class);
 
-        if (getArguments() != null) {
-            //TODO
-            String url = WebFragmentArgs.fromBundle(getArguments()).getUrlLink();
+        if (null != getArguments()) {
+           String url = getArguments().getString("urlLink");
             viewModel.setText(url);
         }
 

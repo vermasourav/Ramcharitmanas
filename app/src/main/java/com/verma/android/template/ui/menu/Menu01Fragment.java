@@ -24,6 +24,8 @@ public class Menu01Fragment extends MenuBaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setOptionMenu(false);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_01, container, false);
+       // binding = Fragment01Binding.inflate(inflater, container, false);
+
         return binding.getRoot();
     }
     @Override
@@ -33,7 +35,8 @@ public class Menu01Fragment extends MenuBaseFragment {
 
     @Override
     public void initComponent() {
-
+        setTitle("Home");
+        binding.textOne.setText(getScreenName());
     }
     @Override
     public void setOptionMenu(boolean hasMenu) {

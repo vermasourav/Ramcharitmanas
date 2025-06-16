@@ -17,10 +17,6 @@
         android:name="com.verma.android.template.ui.menu.Menu00Fragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_00">
-        <action
-            android:id="@+id/action_nav_home_to_nav_two"
-            app:destination="@id/nav_one"
-            app:launchSingleTop="true" />
     </fragment>
 
     <fragment
@@ -28,15 +24,6 @@
         android:name="com.verma.android.template.ui.menu.Menu01Fragment"
         android:label="@string/menu_nav_one"
         tools:layout="@layout/fragment_01">
-        <argument
-            android:name="EXTRA_NOTE_ID"
-            android:defaultValue="-1"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_nav_one_to_nav_home"
-            app:destination="@id/nav_home"
-            app:popUpTo="@id/nav_home"
-            app:launchSingleTop="true" />
     </fragment>
 
     <fragment

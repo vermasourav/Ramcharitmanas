@@ -15,6 +15,7 @@ import android.view.View;
 final class DialogManager {
 
     private DialogManager() {
+        //Do Nothing
     }
 
     static Dialog create(final Context context, final DialogOptions options) {

@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -55,7 +54,7 @@ public class SplashActivity extends AppCompatActivity implements SharedKey {
         setContentView(binding.getRoot());
 
         initSplash();
-        String verName = "Version. " + " - " + BuildConfig.VERSION_NAME;
+        String verName = "Ver. " + App.getInstance().getVersionName();
         binding.appVersion.setText(verName);
         Glide.with(this).load(R.drawable.dot_loading).into(binding.process);
 

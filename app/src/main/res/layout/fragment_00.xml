@@ -20,20 +20,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="@color/appBackground">
+        android:background="@color/appBackgroundDark">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewTop"
+            android:id="@+id/textViewHome"
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="35dp"
+            android:padding="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:visibility="gone"
             tools:visibility="visible"
-            tools:text="@tools:sample/full_names"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:text="@tools:sample/full_names" />
 
         <ScrollView
             android:id="@+id/scrollable"

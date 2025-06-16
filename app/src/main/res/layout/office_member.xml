@@ -13,25 +13,29 @@
     <data />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/backcard"
+        android:id="@+id/about_card"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
+        android:background="@color/appBackgroundDark"
         android:orientation="vertical">
 
         <RelativeLayout
+
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:background="@color/appBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/faceImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="16dp"
                 android:contentDescription="@string/empty" />
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -41,23 +45,24 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/nameTv"
+                    android:textColor="@color/colorPrimary"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="@tools:sample/full_names"
-                    android:textColor="#212121"
                     android:textSize="16sp" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/postTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="@tools:sample/first_names"
-                    android:textColor="#757575"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </RelativeLayout>
 

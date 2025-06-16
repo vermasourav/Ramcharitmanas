@@ -12,6 +12,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
+    android:background="@color/appBackground"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -116,6 +117,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appSubtitle"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/my_name"
@@ -128,7 +130,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/process"
         android:layout_width="100dp"
-        android:layout_height="20dp"
+        android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@android:color/transparent"
@@ -140,9 +142,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appVersion"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,5 +154,5 @@
         app:layout_constraintVertical_bias="0.9"
         app:fontFamily="sans-serif-black"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        tools:text="Version" />
+        tools:text="Version\n 1.0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

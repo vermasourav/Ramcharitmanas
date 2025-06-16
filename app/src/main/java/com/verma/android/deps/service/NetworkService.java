@@ -4,11 +4,12 @@ package com.verma.android.deps.service;
 import com.verma.android.deps.models.request.SampleRequest;
 import com.verma.android.deps.models.response.BaseResponse;
 
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import rx.Observable;
 
 public interface NetworkService {
 

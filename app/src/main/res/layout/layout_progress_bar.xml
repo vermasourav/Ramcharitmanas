@@ -14,11 +14,11 @@
         <import type="android.view.View" />
     </data>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/progress_horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/appBackground"
+        android:background="@color/appBackgroundDark"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -36,5 +36,5 @@
             android:textStyle="bold"
             android:visibility="visible" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

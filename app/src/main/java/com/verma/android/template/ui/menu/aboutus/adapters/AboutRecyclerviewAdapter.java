@@ -82,7 +82,7 @@ public class AboutRecyclerviewAdapter extends RecyclerView.Adapter<AboutRecycler
             textViewName = itemView.findViewById(R.id.nameTv);
             textViewPost = itemView.findViewById(R.id.postTv);
 
-            cardView = itemView.findViewById(R.id.backcard);
+            cardView = itemView.findViewById(R.id.about_card);
         }
     }
 }

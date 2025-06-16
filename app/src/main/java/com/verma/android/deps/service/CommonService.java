@@ -1,16 +1,18 @@
 package com.verma.android.deps.service;
 
-import android.util.Log;
+import static io.reactivex.rxjava3.internal.operators.flowable.FlowableFromIterable.subscribe;
 
 import com.verma.android.deps.models.request.SampleRequest;
 import com.verma.android.deps.models.response.BaseResponse;
 import com.verma.android.template.App;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class CommonService implements INetworkCall {
@@ -23,25 +25,21 @@ public class CommonService implements INetworkCall {
         this.sharedPreferencesService = sharedPreferencesService;
     }
 
-    public Subscription requestSample(final ICallBack.CallBack callback, SampleRequest sampleRequest) {
+    public void requestSample(final ICallBack.CallBack callback, SampleRequest sampleRequest) {
         Timber.tag(TAG).d("requestAuthenticate: %s", sampleRequest.toString());
-        return networkService.requestSample(App.getInstance().API_PATH, sampleRequest)
+
+        networkService.requestSample(App.getInstance().API_PATH, sampleRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext(Observable::error)
-                .subscribe(new Subscriber<BaseResponse>() {
+                .subscribe(new Observer<BaseResponse>() {
                     @Override
-                    public void onCompleted() {
-                        //DO Nothing
+                    public void onSubscribe(@NonNull Disposable d) {
+                            //Do Nothing
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        callback.onError(new NetworkError(e));
-                    }
-
-                    @Override
-                    public void onNext(BaseResponse serverResponse) {
+                    public void onNext(@NonNull BaseResponse serverResponse) {
                         if (null == serverResponse.getStatus()) {
                             callback.onError(new NetworkError(new Throwable(serverResponse.getMessage())));
                         } else {
@@ -53,6 +51,18 @@ public class CommonService implements INetworkCall {
                             }
                         }
                     }
-                });
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        callback.onError(new NetworkError(e));
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //DO Nothing
+                    }
+                })
+
+
+                ;
     }
 }
