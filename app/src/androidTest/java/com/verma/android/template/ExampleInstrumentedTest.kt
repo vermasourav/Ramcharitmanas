@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.verma.android.whatsupv2", appContext.packageName)
+        assertEquals("com.verma.android.template", appContext.packageName)
     }
 }
