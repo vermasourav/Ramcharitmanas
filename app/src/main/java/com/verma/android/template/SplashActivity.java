@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -37,13 +38,10 @@ import timber.log.Timber;
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity implements SharedKey {
     private static final String TAG = "SplashActivity";
-    public int splashTimeOut = 1000;
-
-    //Animations
-    Animation topAnimation;
-
-    Animation bottomAnimation;
-    Animation middleAnimation;
+    private int splashTimeOut = 1000;
+    private Animation topAnimation;
+    private Animation bottomAnimation;
+    private Animation middleAnimation;
 
     private ActivitySplashBinding binding;
 
@@ -86,8 +84,9 @@ public class SplashActivity extends AppCompatActivity implements SharedKey {
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.splash_top_animation);
         bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.splash_bottom_animation);
         middleAnimation = AnimationUtils.loadAnimation(this, R.anim.splash_middle_animation);
+
         //-----------Setting Animations to the elements of SplashScreen-------- -
-        binding.fifthLine.setAnimation(topAnimation);
+        binding.firstLine.setAnimation(topAnimation);
         binding.secondLine.setAnimation(topAnimation);
         binding.thirdLine.setAnimation(topAnimation);
         binding.fifthLine.setAnimation(topAnimation);
@@ -127,55 +126,33 @@ public class SplashActivity extends AppCompatActivity implements SharedKey {
 
 
 
-    private String version;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private String appUrl;
     private void checkForUpdate() {
         try{
-            version = this.getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            firebaseDatabase = FirebaseDatabase.getInstance();
-            databaseReference = firebaseDatabase.getReference("Version").child("versionNumber");
+            String currentVersion = this.getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Version");
+
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String versionName = (String) dataSnapshot.getValue();
+                    String latestVersion = dataSnapshot.child("versionNumber").getValue(String.class);
+                    String appUrl = dataSnapshot.child("appUrl").getValue(String.class);
 
-                    if(!versionName.equals(version)){
-                        AlertDialog alertDialog = new AlertDialog.Builder(SplashActivity.this)
-                                .setTitle("New Version Available!")
-                                .setMessage("Please update our app to the latest version for continuous use.")
-                                .setPositiveButton("UPDATE", (dialog, which) -> {
-                                    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Version").child("appUrl");
-                                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                                            appUrl = dataSnapshot1.getValue().toString();
-                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(appUrl)));
-                                            finish();
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                                            // Do Nothing
-                                        }
-                                    });
-                                })
-                                .setNegativeButton("EXIT", (dialog, which) -> finish())
-                                .create();
-
-                        alertDialog.setCancelable(false);
-                        alertDialog.setCanceledOnTouchOutside(false);
-
-                        alertDialog.show();
-                    }
-                    else{
+                    if (latestVersion != null && !latestVersion.equals(currentVersion)) {
+                        if (TextUtils.isEmpty(appUrl)) {
+                            Timber.tag(TAG).e("App URL is null in Firebase.");
+                            startSplash(); // Proceed if app URL is missing
+                        } else {
+                            showUpdateDialog(appUrl);
+                        }
+                    } else {
                         startSplash();
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    //Do Nothing
+                    Timber.tag(TAG).e(databaseError.toException(), "Failed to read version from Firebase.");
+                    startSplash(); // Proceed if Firebase read fails
                 }
             });
 
@@ -185,14 +162,31 @@ public class SplashActivity extends AppCompatActivity implements SharedKey {
         }
     }
 
+    private void showUpdateDialog(String appUrl) {
+        new AlertDialog.Builder(SplashActivity.this)
+                .setTitle("New Version Available!")
+                .setMessage("Please update our app to the latest version for continuous use.")
+                .setPositiveButton("UPDATE", (dialog, which) -> {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(appUrl)));
+                    finish();
+                })
+                .setNegativeButton("EXIT", (dialog, which) -> finish())
+                .setCancelable(false)
+                .show();
+    }
+
 
     ActivityResultLauncher<Intent> onBoardingLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),result -> {
+            new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
-                    ((App) getApplication()).sharedPreferencesService.setBoolean(SharedKey.KEY_BOOLEAN_SETTING_KEEP_ME_LOGIN,false);
+                    ((App) getApplication()).sharedPreferencesService.setBoolean(SharedKey.KEY_BOOLEAN_SETTING_KEEP_ME_LOGIN, false);
                     //TODO Task OnBoarding Done
-                    Intent data = result.getData();
+                    // Intent data = result.getData(); // data is not used, can be removed
                     close();
+                } else {
+                    // Handle the case where onboarding was not completed successfully, e.g., user pressed back
+                    // Depending on the desired behavior, you might want to close the app or retry onboarding
+                    close(); // For now, just close like successful onboarding
                 }
             });
 }
