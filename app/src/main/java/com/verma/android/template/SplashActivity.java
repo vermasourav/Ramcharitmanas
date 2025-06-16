@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.verma.android.common.AppConfig;
+import com.verma.android.common.Utils;
 import com.verma.android.deps.service.SharedKey;
 import com.verma.android.onboarding.OnBoardingActivity;
 import com.verma.android.template.databinding.ActivitySplashBinding;
@@ -54,7 +55,7 @@ public class SplashActivity extends AppCompatActivity implements SharedKey {
         setContentView(binding.getRoot());
 
         initSplash();
-        String verName = "Ver. " + App.getInstance().getVersionName();
+        String verName = "Ver. " + Utils.getInstance().getVersionName();
         binding.appVersion.setText(verName);
         Glide.with(this).load(R.drawable.dot_loading).into(binding.process);
 

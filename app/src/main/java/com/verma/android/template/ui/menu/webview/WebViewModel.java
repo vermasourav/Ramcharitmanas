@@ -1,4 +1,4 @@
-package com.verma.android.template.ui.menu.web;
+package com.verma.android.template.ui.menu.webview;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

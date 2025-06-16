@@ -8,7 +8,9 @@
   -->
 
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <PreferenceCategory android:title="Splash">
         <CheckBoxPreference
             android:title="Checkbox"
@@ -17,7 +19,8 @@
             android:key="checkboxPref" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Profile" >
+    <PreferenceCategory
+        android:title="Profile" >
 
         <EditTextPreference
             android:title="Set IP Address"

@@ -28,7 +28,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.verma.android.common.AppConfig;
-import com.verma.android.template.App;
+import com.verma.android.common.Utils;
 //import com.verma.android.template.MobileAdsManager;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.ActivityMainBinding;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
             String shareMessage = "\nLet me recommend you this application\n\n";
-            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + App.getInstance().getApplicationId ()+ "\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + Utils.getInstance().getApplicationId ()+ "\n\n";
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
             startActivity(Intent.createChooser(shareIntent, "choose one"));
         } catch (Exception e) {
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String getVersion() {
         try {
-            String verName = App.getInstance().getVersionName();
+            String verName = Utils.getInstance().getVersionName();
             return getString(R.string.app_name) + " Ver " + verName;
         } catch (Exception e) {
             return "";

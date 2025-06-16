@@ -16,7 +16,7 @@
         <import type="android.text.TextUtils" />
         <variable
             name="viewModel"
-            type="com.verma.android.common.viewmodel.AboutUsViewModel" />
+            type="com.verma.android.template.ui.menu.webview.AboutUsViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

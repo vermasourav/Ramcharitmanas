@@ -132,4 +132,14 @@ public class Utils {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
+    public String getApplicationId(){
+        return BuildConfig.APPLICATION_ID;
+    }
+    public String getVersionName(){
+        return BuildConfig.VERSION_NAME;
+    }
+    public int getVersionCode(){
+        return BuildConfig.VERSION_CODE;
+    }
+
 }

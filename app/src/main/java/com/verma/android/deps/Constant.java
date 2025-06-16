@@ -2,9 +2,8 @@ package com.verma.android.deps;
 
 import android.annotation.SuppressLint;
 
+import com.verma.android.common.Utils;
 import com.verma.android.deps.models.base.SenderInfo;
-import com.verma.android.template.App;
-import com.verma.android.template.BuildConfig;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -38,8 +37,8 @@ public class Constant {
 
     public String getVersion() {
         try {
-            String verName = App.getInstance().getVersionName();
-            int verCode = App.getInstance().getVersionCode();
+            String verName = Utils.getInstance().getVersionName();
+            int verCode = Utils.getInstance().getVersionCode();
             return "Ver. " + verName + " (" + verCode + ")";
         } catch (Exception e) {
             return "";

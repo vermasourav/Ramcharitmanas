@@ -1,4 +1,4 @@
-package com.verma.android.common.viewmodel;
+package com.verma.android.template.ui.menu.webview;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.verma.android.template.R;
-import com.verma.android.template.ui.menu.web.WebViewModel;
 
 public class WebFragment extends Fragment {
 

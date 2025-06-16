@@ -1,4 +1,4 @@
-package com.verma.android.common.viewmodel;
+package com.verma.android.template.ui.menu.webview;
 
 import android.content.Context;
 import android.content.Intent;

@@ -66,14 +66,4 @@ public class App extends android.app.Application {
         return pContext.getResources().getBoolean(features);
     }
 
-    public String getApplicationId(){
-        return BuildConfig.APPLICATION_ID;
-    }
-    public String getVersionName(){
-        return BuildConfig.VERSION_NAME;
-    }
-    public int getVersionCode(){
-        return BuildConfig.VERSION_CODE;
-    }
-
 }

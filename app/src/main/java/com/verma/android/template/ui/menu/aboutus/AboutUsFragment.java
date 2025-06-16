@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.verma.android.common.viewmodel.AboutUsViewModel;
+import com.verma.android.template.ui.menu.webview.AboutUsViewModel;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.FragmentAboutUsBinding;
 import com.verma.android.template.ui.menu.MenuBaseFragment;

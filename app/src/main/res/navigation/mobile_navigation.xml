@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/nav_faq"
-        android:name="com.verma.android.common.viewmodel.WebFragment"
+        android:name="com.verma.android.template.ui.menu.webview.WebFragment"
         android:label="@string/menu_nav_faq"
         tools:layout="@layout/fragment_web_view">
         <argument
@@ -75,7 +75,7 @@
 
     <fragment
         android:id="@+id/nav_terms_of_service"
-        android:name="com.verma.android.common.viewmodel.WebFragment"
+        android:name="com.verma.android.template.ui.menu.webview.WebFragment"
         android:label="@string/menu_nav_terms_of_service"
         tools:layout="@layout/fragment_web_view">
         <argument
@@ -86,7 +86,7 @@
 
     <fragment
         android:id="@+id/nav_privacy_policy"
-        android:name="com.verma.android.common.viewmodel.WebFragment"
+        android:name="com.verma.android.template.ui.menu.webview.WebFragment"
         android:label="@string/menu_nav_privacy_policy"
         tools:layout="@layout/fragment_web_view">
         <argument

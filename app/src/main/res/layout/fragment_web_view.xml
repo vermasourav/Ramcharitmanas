@@ -15,12 +15,12 @@
         <import type="android.view.View" />
         <variable
             name="webViewModel"
-            type="com.verma.android.template.ui.menu.web.WebViewModel" />
+            type="com.verma.android.template.ui.menu.webview.WebViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/appBackgroundDark"
+        android:background="@color/appBackground"
         android:layout_height="match_parent">
 
         <WebView
@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
-            android:background="@color/appBackgroundDark"
+            android:backgroundTint="@color/appBackground"
+            android:background="@color/appBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
