@@ -12,7 +12,7 @@
     <color name="app_background_color">@android:color/background_light</color>
     <color name="app_background_dark_color">@android:color/background_dark</color>
 
-    <string name="my_name" translatable="false">𝐊𝙰ຮʜ𝐯𝐢</string>
+    <string name="my_name" translatable="false">✿ ╎K╎A╎S╎H╎V╎I╎ ╎V╎E╎R╎M╎A╎ ✿</string>
 
     <bool name="feature_splash">true</bool>
     <bool name="feature_version_check">true</bool>
@@ -77,7 +77,6 @@
     </style>
 
 
-    <color name="dashboard_background_color">@color/app_100</color>
     <color name="dashboard_badge_bg_color">@color/app_200</color>
 
     <color name="dashboard_expandable_app_icon">@color/app_logo</color>

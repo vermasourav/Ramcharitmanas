@@ -5,9 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper; // Import Looper
 import android.text.TextUtils;
+import android.util.TypedValue; // Import TypedValue
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -15,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -96,8 +101,43 @@ public class SplashActivity extends AppCompatActivity implements SharedKey {
         binding.appVersion.setAnimation(bottomAnimation);
 
         binding.appSubtitle.setAnimation(topAnimation);
+        doNameAnimation();
+
+    }
 
 
+    private void doNameAnimation() {
+        if(binding.appSubtitleContainer == null){
+            return;
+        }
+
+        float originalSubtitleTextSizePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, getResources().getDisplayMetrics()); // e.g., 24sp
+        int originalSubtitleTextColor = ContextCompat.getColor(this, R.color.appTextColor); // Default or theme color
+
+        binding.appSubtitleContainer.removeAllViews(); // Clear any previous views if re-running
+
+        String appSubtitle = getString(R.string.my_name);
+        if (TextUtils.isEmpty(appSubtitle)) {
+            appSubtitle = getString(R.string.app_name); // Fallback
+        }
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        final long staggerDelay = 100; // Milliseconds delay between each character animation
+        for (int i = 0; i < appSubtitle.length(); i++) {
+            final char character = appSubtitle.charAt(i);
+            final int index = i;
+
+            handler.postDelayed(() -> {
+                TextView charView = new TextView(SplashActivity.this);
+                charView.setText(String.valueOf(character));
+
+                charView.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalSubtitleTextSizePx);
+                charView.setTextColor(originalSubtitleTextColor);
+                binding.appSubtitleContainer.addView(charView);
+                Animation charDropAnimation = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.char_drop_down);
+                charView.startAnimation(charDropAnimation);
+            }, index * staggerDelay);
+        }
     }
 
     private void moveNext(){
@@ -180,13 +220,9 @@ public class SplashActivity extends AppCompatActivity implements SharedKey {
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     ((App) getApplication()).sharedPreferencesService.setBoolean(SharedKey.KEY_BOOLEAN_SETTING_KEEP_ME_LOGIN, false);
-                    //TODO Task OnBoarding Done
-                    // Intent data = result.getData(); // data is not used, can be removed
                     close();
                 } else {
-                    // Handle the case where onboarding was not completed successfully, e.g., user pressed back
-                    // Depending on the desired behavior, you might want to close the app or retry onboarding
-                    close(); // For now, just close like successful onboarding
+                    close();
                 }
             });
 }

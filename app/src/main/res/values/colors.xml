@@ -15,6 +15,7 @@
     <color name="appTextColorSecondary">@color/black</color>
 
     <color name="dashboard_text_color">@color/appTextColor</color>
+    <color name="dashboard_background_color">@color/app_200</color>
 
 
 </resources>

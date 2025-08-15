@@ -15,5 +15,6 @@
 
 
     <color name="dashboard_text_color">@color/appTextColor</color>
+    <color name="dashboard_background_color">@color/app_600</color>
 
 </resources>
