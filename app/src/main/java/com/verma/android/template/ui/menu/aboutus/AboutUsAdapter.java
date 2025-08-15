@@ -1,7 +1,6 @@
-package com.verma.android.template.ui.menu.aboutus.adapters;
+package com.verma.android.template.ui.menu.aboutus;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.verma.android.template.R;
-import com.verma.android.template.ui.menu.aboutus.ImageSupport;
 import com.verma.android.template.ui.menu.aboutus.models.Member;
 
 import java.util.ArrayList;
@@ -23,13 +22,13 @@ import java.util.List;
 
 import timber.log.Timber;
 
-public class AboutRecyclerviewAdapter extends RecyclerView.Adapter<AboutRecyclerviewAdapter.ViewHolder> {
+public class AboutUsAdapter extends RecyclerView.Adapter<AboutUsAdapter.AboutUsViewHolder> {
 
     private static final String TAG = "AboutRecyclerviewAdapte";
     Context context;
     ArrayList<Member> members;
 
-    public AboutRecyclerviewAdapter(Context context, List<Member> members) {
+    public AboutUsAdapter(Context context, List<Member> members) {
         this.context = context;
         this.members = (ArrayList<Member>) members;
     }
@@ -37,16 +36,16 @@ public class AboutRecyclerviewAdapter extends RecyclerView.Adapter<AboutRecycler
     @NonNull
     @Override
 
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.office_member, parent, false));
+    public AboutUsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new AboutUsViewHolder(LayoutInflater.from(context).inflate(R.layout.office_member, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AboutUsViewHolder holder, int position) {
         final Member member = members.get(position);
 
         try {
-            new ImageSupport().setImageWithGlide(context, member.getImageUrl(), holder.imageView);
+           AboutUsHelper.setImageWithGlide(context, member.getImageUrl(), holder.imageView);
         } catch (Exception e) {
             Timber.e("onBindViewHolder: %s", e.toString());
         }
@@ -57,8 +56,10 @@ public class AboutRecyclerviewAdapter extends RecyclerView.Adapter<AboutRecycler
             if (member.getContactUrl().isEmpty()) {
                 Toast.makeText(context, "" + member.getName() + " has added no contact info", Toast.LENGTH_SHORT).show();
             } else {
-                Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(member.getContactUrl()));
-                context.startActivity(browse);
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                builder.setShowTitle(true);
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.launchUrl(context, Uri.parse(member.getContactUrl()));
             }
         });
     }
@@ -68,14 +69,14 @@ public class AboutRecyclerviewAdapter extends RecyclerView.Adapter<AboutRecycler
         return members.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class AboutUsViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
         TextView textViewName;
         TextView textViewPost;
         CardView cardView;
 
-        public ViewHolder(@NonNull View itemView) {
+        public AboutUsViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.faceImage);

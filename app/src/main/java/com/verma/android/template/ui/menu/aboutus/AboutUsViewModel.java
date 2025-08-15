@@ -1,4 +1,4 @@
-package com.verma.android.template.ui.menu.webview;
+package com.verma.android.template.ui.menu.aboutus;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -16,7 +17,6 @@ import com.verma.android.common.Utils;
 import com.verma.android.template.R;
 import com.verma.android.template.ui.menu.aboutus.models.Member;
 import com.verma.android.template.ui.menu.aboutus.models.OfficeInfo;
-import com.verma.android.template.ui.menu.aboutus.others.GlobalMethods;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,6 @@ public class AboutUsViewModel extends ViewModel {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }
-
 
     public void init(Context pContext) {
         try {
@@ -50,53 +49,57 @@ public class AboutUsViewModel extends ViewModel {
     }
 
     public void onClickGooglePlay(View pView) {
-        if (GlobalMethods.isAvailable(officeInfo.getGooglePlayUrl())) {
-            Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(officeInfo.getGooglePlayUrl()));
-            pView.getContext().startActivity(browse);
+        if (AboutUsHelper.isAvailable(officeInfo.getGooglePlayUrl())) {
+            openBrowserTab(pView.getContext(),Uri.parse(officeInfo.getGooglePlayUrl()));
         } else {
             Toast.makeText(pView.getContext(), urlIsNotProvidedYet, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void onClickFacebook(View pView) {
-        if (GlobalMethods.isAvailable(officeInfo.getFacebookPageUrl())) {
-            pView.getContext().startActivity(GlobalMethods.getFacebookPageIntent(pView.getContext(), officeInfo));
+        if (AboutUsHelper.isAvailable(officeInfo.getFacebookPageUrl())) {
+            Intent intent = AboutUsHelper.getFacebookPageIntent(pView.getContext(), officeInfo);
+            openBrowserTab(pView.getContext(),intent.getData());
         } else {
             Toast.makeText(pView.getContext(), urlIsNotProvidedYet, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void onClickGroup(View pView) {
-        if (GlobalMethods.isAvailable(officeInfo.getGroupUrl())) {
-            Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(officeInfo.getGroupUrl()));
-            pView.getContext().startActivity(browse);
+        if (AboutUsHelper.isAvailable(officeInfo.getGroupUrl())) {
+            openBrowserTab(pView.getContext(),Uri.parse(officeInfo.getGroupUrl()));
         } else {
             Toast.makeText(pView.getContext(), urlIsNotProvidedYet, Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void openBrowserTab(Context context, Uri pUri) {
+
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        CustomTabsIntent customTabsIntent = builder.build();
+        builder.setShowTitle(true);
+        customTabsIntent.launchUrl(context, pUri);
+    }
+
     public void onClickYoutube(View pView) {
-        if (GlobalMethods.isAvailable(officeInfo.getYoutubeUrl())) {
-            Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(officeInfo.getYoutubeUrl()));
-            pView.getContext().startActivity(browse);
+        if (AboutUsHelper.isAvailable(officeInfo.getYoutubeUrl())) {
+            openBrowserTab(pView.getContext(),Uri.parse(officeInfo.getYoutubeUrl()));
         } else {
             Toast.makeText(pView.getContext(), urlIsNotProvidedYet, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void onClickGithub(View pView) {
-        if (GlobalMethods.isAvailable(officeInfo.getGithubUrl())) {
-            Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(officeInfo.getGithubUrl()));
-            pView.getContext().startActivity(browse);
+        if (AboutUsHelper.isAvailable(officeInfo.getGithubUrl())) {
+            openBrowserTab(pView.getContext(),Uri.parse(officeInfo.getGithubUrl()));
         } else {
             Toast.makeText(pView.getContext(), urlIsNotProvidedYet, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void onClickWeb(View pView) {
-        if (GlobalMethods.isAvailable(officeInfo.getWebUrl())) {
-            Intent browse = new Intent(Intent.ACTION_VIEW, Uri.parse(officeInfo.getWebUrl()));
-            pView.getContext().startActivity(browse);
+        if (AboutUsHelper.isAvailable(officeInfo.getWebUrl())) {
+            openBrowserTab(pView.getContext(),Uri.parse(officeInfo.getWebUrl()));
         } else {
             Toast.makeText(pView.getContext(), urlIsNotProvidedYet, Toast.LENGTH_SHORT).show();
         }

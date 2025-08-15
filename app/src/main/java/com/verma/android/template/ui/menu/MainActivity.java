@@ -32,8 +32,6 @@ import com.verma.android.common.Utils;
 //import com.verma.android.template.MobileAdsManager;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.ActivityMainBinding;
-import com.verma.android.template.ui.rate.AppRate;
-import com.verma.android.template.ui.rate.StoreType;
 
 
 import timber.log.Timber;
@@ -57,9 +55,14 @@ public class MainActivity extends AppCompatActivity {
         try {
             setSupportActionBar(binding.appBarMain.toolbar);
             binding.appBarMain.fab.setOnClickListener(view -> {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+                Snackbar snackbar = Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
-                        .setAnchorView(R.id.fab).show();
+                        .setAnchorView(R.id.fab);
+                snackbar.setTextColor(ContextCompat.getColor(this, R.color.appTextColor));
+
+
+                snackbar.show();
             });
             DrawerLayout drawer = binding.drawerLayout;
             NavigationView navigationView = binding.navView;
@@ -88,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(navigationView, navController);
-            //initAds();
             // setupBackPress();
 
         } catch (Exception e) {
@@ -112,19 +114,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initAds() {
-        Timber.tag(TAG).d("initAds: ");
-        //DO Nothing
-        // MobileAdsManager.getInstance().initAds(this, findViewById(R.id.adView));
-        // MobileAdsManager.getInstance().showAds(findViewById(R.id.adView));
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        boolean isRateUs = AppConfig.getInstance().featureRateUs && AppRate.with(this).shouldShowRateDialog();
         getMenuInflater().inflate(R.menu.menu_all_screen, menu);
         menu.findItem(R.id.action_home).setVisible(true);
-        menu.findItem(R.id.action_rate_us).setVisible(isRateUs);
+        menu.findItem(R.id.action_rate_us).setVisible(AppConfig.getInstance().featureRateUs);
         menu.findItem(R.id.action_share_me).setVisible(AppConfig.getInstance().featureShareMenu);
         return true;
     }
@@ -141,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_rate_us) {
-            addRateMe();
+            clickRateMe();
             return true;
         } else if (id == R.id.action_share_me) {
             shareMe();
@@ -213,30 +207,17 @@ public class MainActivity extends AppCompatActivity {
     private void gotoHome() {
         findViewById(R.id.nav_home).performClick();
     }
-    private void addRateMe() {
-        AppRate.with(this)
-                .setStoreType(StoreType.GOOGLEPLAY) //default is Google, other option is Amazon
-                .setInstallDays(2) // default 10, 0 means install day.
-                .setLaunchTimes(10) // default 10 times.
-                .setRemindInterval(2) // default 1 day.
-                .setShowLaterButton(true) // default true.
-                .setDebug(true) // default false.
-                .setCancelable(false) // default false.
-                .setOnClickButtonListener(which -> Timber.d("addRateMe: %s", which))
-                .setTitle(R.string.rate_dialog_title)
-                .setTextLater(R.string.rate_dialog_later)
-                .setTextNever(R.string.rate_dialog_never)
-                .setTextRateNow(R.string.rate_dialog_ok)
-                .monitor();
-        AppRate.showRateDialogIfMeetsConditions(this);
+    private void clickRateMe() {
     }
 
     public void displayMessage(String pMessage) {
-        Snackbar.make(
+        Snackbar snackbar = Snackbar.make(
                 findViewById(R.id.fab),
                 pMessage,
                 Snackbar.LENGTH_SHORT
-        ).show();
+        );
+        snackbar.setTextColor(ContextCompat.getColor(this, R.color.appTextColor));
+        snackbar.show();
     }
 
     public void setupBackPress() {

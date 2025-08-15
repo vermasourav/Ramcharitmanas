@@ -11,11 +11,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.verma.android.template.ui.menu.webview.AboutUsViewModel;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.FragmentAboutUsBinding;
 import com.verma.android.template.ui.menu.MenuBaseFragment;
-import com.verma.android.template.ui.menu.aboutus.adapters.AboutRecyclerviewAdapter;
 
 
 public class AboutUsFragment extends MenuBaseFragment {
@@ -42,7 +40,7 @@ public class AboutUsFragment extends MenuBaseFragment {
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.officeAboutRecyclerView.setLayoutManager(manager);
-        RecyclerView.Adapter<AboutRecyclerviewAdapter.ViewHolder> adapter = new AboutRecyclerviewAdapter(getContext(), viewModel.members);
+        RecyclerView.Adapter<AboutUsAdapter.AboutUsViewHolder> adapter = new AboutUsAdapter(getContext(), viewModel.members);
         binding.officeAboutRecyclerView.setItemAnimator(new DefaultItemAnimator());
         binding.officeAboutRecyclerView.setAdapter(adapter);
 

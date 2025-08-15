@@ -1,17 +1,14 @@
 package com.verma.android.template.ui.menu;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.view.MenuProvider;
 import androidx.databinding.DataBindingUtil;
 
@@ -34,8 +31,6 @@ public class Menu01Fragment extends MenuBaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setOptionMenu(false);
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_01, container, false);
-        //binding = Fragment01Binding.inflate(inflater, container, false);
-
         return binding.getRoot();
     }
     @Override
@@ -67,7 +62,7 @@ public class Menu01Fragment extends MenuBaseFragment {
 
     private void intExpendedList() {
         binding.expandableListview.setVisibility(View.VISIBLE);
-        binding.expandableListview.isWithImage(true);
+        binding.expandableListview.isWithImage(false);
         binding.expandableListview.isWithSorting(false);
         binding.expandableListview.isWithChildArrow(true);
         binding.expandableListview.withChildMode(0);
@@ -86,6 +81,5 @@ public class Menu01Fragment extends MenuBaseFragment {
         DashBoardManager dashBoardManager = new DashBoardManager();
         ArrayList<DashBoardItem> dashBoardItems = dashBoardManager.getDashBoardItems(getActivity(),"content_dashboard.json");
         binding.expandableListview.doUpdate(dashBoardItems);
-
     }
 }

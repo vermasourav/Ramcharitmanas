@@ -7,8 +7,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.util.Base64;
-import android.view.Gravity;
-import android.widget.Toast;
 import com.verma.android.template.BuildConfig;
 
 import java.io.BufferedReader;
@@ -66,22 +64,6 @@ public class Utils {
         context.startActivity(intent);
     }
 
-    public void copyToClipboard(Context pContext, String copyText) {
-        int sdk = android.os.Build.VERSION.SDK_INT;
-        if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
-            android.text.ClipboardManager clipboard = (android.text.ClipboardManager)
-                    pContext.getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setText(copyText);
-        } else {
-            android.content.ClipboardManager clipboard = (android.content.ClipboardManager)
-                    pContext.getSystemService(Context.CLIPBOARD_SERVICE);
-            android.content.ClipData clip = android.content.ClipData.newPlainText("Your TEXT", copyText);
-            clipboard.setPrimaryClip(clip);
-        }
-        Toast toast = Toast.makeText(pContext.getApplicationContext(), "Your Text is copied", Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM | Gravity.END, 50, 50);
-        toast.show();
-    }
 
     public String readFile(Context pContext, int aboutMe) {
         String jsonString = "";

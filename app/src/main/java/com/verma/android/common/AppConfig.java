@@ -17,7 +17,6 @@ public class AppConfig {
     public static boolean featureVersionCheck;
     public static boolean featureOnboarding;
     public static boolean featureUxTagging;
-    public static boolean featureAds;
     public boolean featureRateUs;
     public boolean featureShareMenu;
 
@@ -45,7 +44,6 @@ public class AppConfig {
 
     public void init(Context pContext) {
         Utils.getInstance().printHashKey(pContext);
-        featureAds = isFeaturesEnable(pContext, R.bool.feature_ads);
         featureSplash = isFeaturesEnable(pContext, R.bool.feature_splash);
         featureVersionCheck = isFeaturesEnable(pContext, R.bool.feature_version_check);
         featureOnboarding = isFeaturesEnable(pContext, R.bool.feature_onboarding);
