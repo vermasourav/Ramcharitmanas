@@ -7,17 +7,31 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.MenuProvider;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.verma.android.dashboard.DashBoardManager;
+import com.verma.android.dashboard.DashBoardWindowItem;
+import com.verma.android.dashboard.DashboardClickListener;
+import com.verma.android.dashboard.Setup;
+import com.verma.android.dashboard.expendview.ExpandableHelper;
+import com.verma.android.dashboard.window.WindowAdapter;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.Fragment02Binding;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import timber.log.Timber;
 
 public class Menu02Fragment extends MenuBaseFragment {
 
     private Fragment02Binding binding;
+    private static final String TAG = "Menu02Fragment";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,7 +45,9 @@ public class Menu02Fragment extends MenuBaseFragment {
     }
     @Override
     public void initComponent() {
-
+        binding.textTwo.setText(getScreenName());
+        binding.textTwo.setVisibility(View.GONE);
+        initWindowDashboard();
     }
 
     @Override
@@ -48,5 +64,32 @@ public class Menu02Fragment extends MenuBaseFragment {
             }
         });
     }
+
+    private void initWindowDashboard() {
+         //List<DashBoardWindowItem> windowItems = ExpandableHelper.getSampleWindowList(15);
+        ArrayList<DashBoardWindowItem> windowItems = new DashBoardManager().getWindowsItems(getContext(), "content_dashboard_window.json");
+
+        WindowAdapter windowAdapter = new WindowAdapter(getContext(), windowItems, dashboardClickListener);
+        Setup setup = new Setup();
+        setup.setDebugLog(false);
+        setup.setCountDisplay(true);
+        setup.setImageDisplay(false);
+        setup.setDescriptionDisplay(true);
+
+        windowAdapter.setSetup(setup);
+        binding.windowRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.windowRecyclerView.setAdapter(windowAdapter);
+
+        windowAdapter.setDashboardClickListener(dashboardClickListener);
+
+    }
+
+     DashboardClickListener dashboardClickListener = (v, dashBoardItem) -> {
+        if (dashBoardItem.getChilds() != null) {
+            Toast.makeText(getContext(), dashBoardItem.getName(), Toast.LENGTH_LONG).show();
+            Timber.tag(TAG).d("Group Clicked: You clicked : %s", dashBoardItem);
+        }
+    };
+
 
 }

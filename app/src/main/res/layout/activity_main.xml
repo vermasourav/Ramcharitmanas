@@ -23,8 +23,9 @@
         android:fitsSystemWindows="true"
         android:backgroundTint="@color/appBackground"
         android:background="@color/appBackground"
-        app:itemIconTint="@color/blue_logo"
-        app:itemTextColor="@color/colorPrimary"
+        app:itemIconTint="@color/app_logo"
+        app:itemTextColor="@color/appTextColor"
+
         android:isScrollContainer="true"
         app:subheaderColor="@color/colorSecondary"
         app:headerLayout="@layout/nav_header_main"

@@ -8,13 +8,12 @@
 
 <resources>
     <integer name="splash_time_out">5000</integer>
-    <color name="appBackground">@android:color/background_light</color>
-    <color name="appBackgroundDark">@android:color/background_dark</color>
-    <string name="my_name">V3RMA Kashvi</string>
 
-    <string name="ads_id">ca-app-pub-5937141550883860~5553188392</string>
-    <string name="ads_unit_id">ca-app-pub-5937141550883860/8603707777</string>
-    <bool name="feature_ads">false</bool>
+    <color name="app_background_color">@android:color/background_light</color>
+    <color name="app_background_dark_color">@android:color/background_dark</color>
+
+    <string name="my_name" translatable="false">𝐊𝙰ຮʜ𝐯𝐢</string>
+
     <bool name="feature_splash">true</bool>
     <bool name="feature_version_check">true</bool>
     <bool name="feature_onboarding">true</bool>
@@ -37,16 +36,16 @@
     <bool name="feature_share_menu">true</bool>
 
 
-    <string name="menu_nav_home">Home</string>
-    <string name="menu_nav_one">One</string>
-    <string name="menu_nav_two">Two</string>
-    <string name="menu_nav_three">Three</string>
-    <string name="menu_nav_section_two_header">Communicate</string>
-    <string name="menu_nav_four">Share</string>
-    <string name="menu_nav_five">Send</string>
-    <string name="menu_nav_six">Six</string>
+    <string name="menu_nav_home" translatable="false">Home</string>
+    <string name="menu_nav_one" translatable="false">One</string>
+    <string name="menu_nav_two" translatable="false">Two</string>
+    <string name="menu_nav_three" translatable="false">Three</string>
+    <string name="menu_nav_section_two_header" translatable="false">Communicate</string>
+    <string name="menu_nav_four" translatable="false">Share</string>
+    <string name="menu_nav_five" translatable="false">Send</string>
+    <string name="menu_nav_six" translatable="false">Six</string>
     <string name="menu_nav_setting" translatable="false">Setting</string>
-    <string name="menu_nav_about_us">About us</string>
+    <string name="menu_nav_about_us" translatable="false" >About us</string>
     <string name="menu_nav_section_three_header" translatable="false">Others</string>
     <string name="menu_nav_faq" translatable="false">FAQ</string>
     <string name="menu_nav_privacy_policy" translatable="false">Privacy Policy</string>
@@ -56,16 +55,6 @@
 
     <string name="empty"> </string>
     <string name="text_exit_request">Do you want to Exit?</string>
-
-
-    <string name="rate_dialog_message">If you enjoy this app, would you mind taking a moment to rate it? \nIt won\'t take more than a minute. \n\nThanks for your support!</string>
-    <string name="rate_dialog_cancel">Remind Me Later</string>
-    <string name="rate_dialog_no">No, Thanks</string>
-
-    <string name="rate_dialog_title">Rate Me!</string>
-    <string name="rate_dialog_never">Never</string>
-    <string name="rate_dialog_later">Later</string>
-    <string name="rate_dialog_ok">Rate</string>
 
 
     <style name="CustomLollipopDialogStyle" parent="android:Theme.Material.Light.Dialog.Alert">
@@ -88,8 +77,19 @@
     </style>
 
 
-    <color name="dashboard_background_color">@color/colorSecondary</color>
-    <color name="dashboard_text_color">@color/colorPrimary</color>
+    <color name="dashboard_background_color">@color/app_100</color>
+    <color name="dashboard_badge_bg_color">@color/app_200</color>
+
+    <color name="dashboard_expandable_app_icon">@color/app_logo</color>
+    <color name="dashboard_expandable_show_less">#FF0000</color>
+    <color name="dashboard_expandable_show_more">#FF0000</color>
+    <color name="dashboard_header_bg_color">#B2DFDB</color>
+    <color name="dashboard_header_divider_color">#BDBDBD</color>
     <dimen name="dashboard_image_max_height">40dp</dimen>
     <dimen name="dashboard_image_max_width">40dp</dimen>
+
+
+    <dimen name="expended_list_child_max_height">250dp</dimen>
+
+
 </resources>

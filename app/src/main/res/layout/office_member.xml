@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:background="@color/appBackgroundDark"
+        android:background="@color/appBackground"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -47,8 +47,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/nameTv"
-                    android:textColor="@color/colorPrimary"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="@tools:sample/full_names"
@@ -59,7 +57,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="@tools:sample/first_names"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

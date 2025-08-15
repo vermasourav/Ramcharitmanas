@@ -2,20 +2,39 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue500</item>
-        <item name="colorPrimaryDark">@color/blue800</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/black30</item>
-        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/app_500</item>
+        <item name="colorPrimaryDark">@color/app_700</item>
+        <item name="colorOnPrimary">@color/black</item>
 
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/app_500</item>
+        <item name="colorSecondaryVariant">@color/app_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Background / Surface -->
+        <item name="android:colorBackground">@color/appBackground</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorSurface">@color/appBackground</item>
+        <item name="colorOnSurface">@color/white</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/app_300</item>
+
+        <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/appBackground</item>
         <item name="android:itemBackground">@color/appBackground</item>
-        <item name="android:colorBackground">@color/appBackground</item>
-        <item name="android:editTextBackground">@color/appBackground</item>
 
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:editTextColor">@color/colorPrimary</item>
-        <item name="colorAccent">@color/yellow700</item>
+        <item name="android:editTextBackground">@color/appBackground</item>
+        <item name="android:textColor">@color/appTextColor</item>
+        <item name="android:textColorHighlight">@color/appTextColorHighlight</item>
+        <item name="android:editTextColor">@color/appTextColor</item>
+
+        <!-- Navigation menu item text color -->
+        <item name="android:textColorSecondary">@color/appTextColorSecondary</item>
+
+
+
+        <item name="colorAccent">@color/app_700</item>
 
     </style>
 

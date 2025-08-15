@@ -1,6 +1,5 @@
 package com.verma.android.template.ui.menu;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -8,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import com.verma.android.common.AppConfig;
 
 
 import androidx.annotation.NonNull;
@@ -19,13 +17,11 @@ import com.google.gson.Gson;
 import com.verma.android.dashboard.DashBoardItem;
 import com.verma.android.dashboard.DashBoardManager;
 import com.verma.android.dashboard.DashboardClickListener;
-import com.verma.android.dashboard.databinding.FragmentDashboardBinding;
 import com.verma.android.template.R;
 import com.verma.android.template.databinding.Fragment00Binding;
 import com.verma.android.dashboard.Setup;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -37,8 +33,6 @@ public class Menu00Fragment extends MenuBaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_00, container, false);
-        //binding = Fragment00Binding.inflate(getLayoutInflater());
-
         setOptionMenu(true);
         return binding.getRoot();
     }
@@ -90,7 +84,7 @@ public class Menu00Fragment extends MenuBaseFragment {
         setup.setDebugLog(true);
         setup.setCountDisplay(true);
         setup.setImageDisplay(true);
-        setup.setIsDiscriptionDisplay(false);
+        setup.setDescriptionDisplay(false);
         dashBoardManager.setSetup(setup);
 
          ArrayList<DashBoardItem> dashBoardItems = dashBoardManager.getDashBoardItems(getContext(),"content_dashboard.json", false);
