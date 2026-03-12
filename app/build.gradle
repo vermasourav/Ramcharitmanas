@@ -2,15 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.androidx.navigation.safeargs)
 }
 //apply from: rootProject.file('./app/signing.gradle')
 
 android {
-    namespace 'com.verma.android.template'
-    compileSdk 36
+    namespace 'com.verma.android.ramcharitmanas'
+    compileSdkVersion 36
 
     defaultConfig {
-        applicationId "com.verma.android.template"
+        applicationId "com.verma.android.ramcharitmanas"
         minSdk 28
         targetSdk 36
         versionCode 10001
@@ -20,10 +21,6 @@ android {
 
         vectorDrawables.useSupportLibrary = true
         setProperty("archivesBaseName", applicationId + "-v" + versionCode + "(" + versionName + ")")
-        buildConfigField "int", "LIMIT", "100"
-        buildConfigField "String", "BASEURL", "\"http:/192.168.197.1:8080/\""
-        buildConfigField "String", "API_PATH", "\"start\""
-        buildConfigField "int", "CACHETIME", "432000" // 5days
     }
 
     buildTypes {
@@ -81,6 +78,8 @@ dependencies {
     // Verma implementation
     implementation libs.onboarding
     implementation libs.dashboard
+    implementation libs.widgets
+    implementation libs.showmoretextview
 
     // glide implementation
     implementation libs.glide
@@ -90,21 +89,10 @@ dependencies {
     implementation libs.timber
     implementation libs.gson
 
-    // dagger implementation
-    implementation libs.dagger
-    annotationProcessor libs.dagger.compiler
 
 
-    // Network implementation
-    implementation(libs.retrofit.core) // Or whatever your alias for retrofit core is
-    implementation(libs.adapter.rxjava) // This must match an alias in libs.versions.toml
-    implementation(libs.rxjava3.core) // Example: if you have an alias for RxJava3
-    implementation(libs.rxjava3.android) // Example: if you have an alias for RxAndroid3
+
     implementation libs.converter.gson
-    implementation libs.converter.scalars
-    implementation libs.okhttp
-    implementation libs.logging.interceptor
-
 
     // Import the BoM for the Firebase platform
     implementation(platform(libs.firebase.bom))
@@ -113,5 +101,7 @@ dependencies {
     implementation(libs.firebase.perf)
     implementation(libs.firebase.config)
     implementation(libs.firebase.database)
+
+    implementation (libs.commons.lang3)
 
 }

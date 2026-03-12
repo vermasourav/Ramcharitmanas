@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by: V3RMA SOURAV on 08/03/24, 3:18 pm
+  ~ Copyright © 2023 All rights reserved
+  ~ Class name : main00.xml
+  ~ Last modified:  21/01/24, 8:20 pm
+  ~ Location: Bangalore, India
+  ~
+  -->
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/action_test"
+        android:orderInCategory="103"
+        android:title="Test"
+        app:showAsAction="always" />
 </menu>

@@ -1,11 +1,10 @@
 package com.verma.android.common;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.verma.android.template.R;
+import com.verma.android.ramcharitmanas.R;
 
 import timber.log.Timber;
 

@@ -15,7 +15,7 @@
         <import type="android.view.View" />
         <variable
             name="webViewModel"
-            type="com.verma.android.template.ui.menu.webview.WebViewModel" />
+            type="com.verma.android.ramcharitmanas.ui.menu.webview.WebViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

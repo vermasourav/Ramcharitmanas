@@ -10,48 +10,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/appBackground"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:background="@color/colorPrimary"
         android:paddingTop="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.DayNight"
         android:orientation="vertical"
         tools:visibility="visible"
         android:gravity="bottom">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/avatar"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
 
-            app:srcCompat="@drawable/ic_launcher"
-            tools:visibility="visible"
-            android:visibility="visible"
-            android:src="@drawable/ic_launcher"
-            tools:src="@drawable/ic_launcher"
-            android:contentDescription="@string/empty"
-            />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textName"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            tools:text="@tools:sample/full_names" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textEmail"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/empty"
+            android:background="@color/appBackground"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:theme="@style/ThemeOverlay.AppCompat.DayNight"
+            android:orientation="vertical"
             tools:visibility="visible"
-            android:visibility="gone"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="@tools:sample/full_names" />
+            android:gravity="bottom">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/avatar"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+
+                app:srcCompat="@drawable/ic_launcher"
+                tools:visibility="visible"
+                android:visibility="visible"
+                android:src="@drawable/ic_launcher"
+                tools:src="@drawable/ic_launcher"
+                android:contentDescription="@string/empty"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textName"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="@tools:sample/full_names" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textEmail"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty"
+                tools:visibility="visible"
+                android:visibility="gone"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                tools:text="@tools:sample/full_names" />
+        </LinearLayout>
     </LinearLayout>
+
 </layout>

@@ -1,20 +1,31 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-android:width="200dp"
-android:height="200dp"
-android:viewportWidth="256"
-android:viewportHeight="256">
+<!--
+  ~ Created by: V3RMA SOURAV on 08/03/24, 3:18 pm
+  ~ Copyright © 2023 All rights reserved
+  ~ Class name : splash_line.xml
+  ~ Last modified:  07/02/24, 8:30 pm
+  ~ Location: Bangalore, India
+  ~
+  -->
+
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="256dp"
+    android:height="256dp"
+    android:viewportWidth="256"
+    android:viewportHeight="256"
+    tools:ignore="VectorRaster">
     <path
         android:fillColor="@color/appBackground"
         android:pathData="M4,22H2V2h2V22zM22,7H6v3h16V7zM16,14H6v3h10V14z"/>
-
     <path
-    android:fillColor="#FF000000"
-    android:pathData="M128,128m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0"/>
-<path
-    android:fillColor="#FF000000"
-    android:pathData="M128,48m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0"/>
-<path
-    android:fillColor="#FF000000"
-    android:pathData="M128,208m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0"/>
+        android:fillColor="#FF000000"
+        android:pathData="M128,128m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0"/>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M128,48m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0"/>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M128,208m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0"/>
 </vector>
 

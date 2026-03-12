@@ -14,56 +14,79 @@
     app:startDestination="@+id/nav_home">
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.verma.android.template.ui.menu.Menu00Fragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.Menu00Fragment"
         android:label="@string/menu_nav_home"
         tools:layout="@layout/fragment_00">
+        <action
+            android:id="@+id/action_nav_home_to_nav_one"
+            app:destination="@id/nav_one"
+            app:launchSingleTop="true" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_one"
-        android:name="com.verma.android.template.ui.menu.Menu01Fragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.Menu01Fragment"
         android:label="@string/menu_nav_one"
         tools:layout="@layout/fragment_01">
+
+        <argument
+            android:name="argHeader"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="argChilds"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="argDescription"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_nav_one_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_home"
+            app:launchSingleTop="true" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_two"
-        android:name="com.verma.android.template.ui.menu.Menu02Fragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.Menu02Fragment"
         android:label="@string/menu_nav_two"
         tools:layout="@layout/fragment_02" />
 
     <fragment
         android:id="@+id/nav_three"
-        android:name="com.verma.android.template.ui.menu.Menu03Fragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.Menu03Fragment"
         android:label="@string/menu_nav_three"
         tools:layout="@layout/fragment_03" />
 
     <fragment
         android:id="@+id/nav_four"
-        android:name="com.verma.android.template.ui.menu.Menu04Fragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.Menu04Fragment"
         android:label="@string/menu_nav_four"
         tools:layout="@layout/fragment_04" />
 
     <fragment
         android:id="@+id/nav_five"
-        android:name="com.verma.android.template.ui.menu.Menu05Fragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.Menu05Fragment"
         android:label="@string/menu_nav_five"
         tools:layout="@layout/fragment_05" />
 
     <fragment
         android:id="@+id/nav_six"
-        android:name="com.verma.android.template.ui.menu.Menu06Fragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.Menu06Fragment"
         android:label="@string/menu_nav_six"
         tools:layout="@layout/fragment_06" />
 
     <fragment
         android:id="@+id/nav_setting"
-        android:name="com.verma.android.template.ui.menu.MenuSettingFragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.MenuSettingFragment"
         android:label="@string/menu_nav_setting"/>
 
     <fragment
         android:id="@+id/nav_faq"
-        android:name="com.verma.android.template.ui.menu.webview.WebFragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.webview.WebFragment"
         android:label="@string/menu_nav_faq"
         tools:layout="@layout/fragment_web_view">
         <argument
@@ -75,7 +98,7 @@
 
     <fragment
         android:id="@+id/nav_terms_of_service"
-        android:name="com.verma.android.template.ui.menu.webview.WebFragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.webview.WebFragment"
         android:label="@string/menu_nav_terms_of_service"
         tools:layout="@layout/fragment_web_view">
         <argument
@@ -86,7 +109,7 @@
 
     <fragment
         android:id="@+id/nav_privacy_policy"
-        android:name="com.verma.android.template.ui.menu.webview.WebFragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.webview.WebFragment"
         android:label="@string/menu_nav_privacy_policy"
         tools:layout="@layout/fragment_web_view">
         <argument
@@ -98,7 +121,7 @@
 
     <fragment
         android:id="@+id/nav_about_us"
-        android:name="com.verma.android.template.ui.menu.aboutus.AboutUsFragment"
+        android:name="com.verma.android.ramcharitmanas.ui.menu.aboutus.AboutUsFragment"
         android:label="@string/menu_nav_about_us"
         tools:layout="@layout/fragment_about_us" />
 </navigation>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="app_50">#F5F3FF</color>
-    <color name="app_100">#EDE9FE</color>
-    <color name="app_200">#DDD6FE</color>
-    <color name="app_300">#C4B5FD</color>
-    <color name="app_400">#A78BFA</color> <!-- Primary -->
-    <color name="app_500">#8B5CF6</color>
-    <color name="app_600">#7C3AED</color>
-    <color name="app_700">#6D28D9</color>
-    <color name="app_800">#5B21B6</color>
-    <color name="app_900">#4C1D95</color>
+    <color name="app_50">#FFF3E0</color>
+    <color name="app_100">#FFE0B2</color>
+    <color name="app_200">#FFCC80</color>
+    <color name="app_300">#FFB74D</color>
+    <color name="app_400">#FFA726</color>
+    <color name="app_500">#FF9800</color>
+    <color name="app_600">#FB8C00</color>
+    <color name="app_700">#F57C00</color>
+    <color name="app_800">#EF6C00</color>
+    <color name="app_900">#E65100</color>
+
 
      <!-- Neutral -->
     <color name="neutral_app_50">#FAFAFA</color>

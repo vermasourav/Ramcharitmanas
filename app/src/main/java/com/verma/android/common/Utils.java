@@ -7,7 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.util.Base64;
-import com.verma.android.template.BuildConfig;
+import com.verma.android.ramcharitmanas.BuildConfig;
 
 import java.io.BufferedReader;
 import java.io.IOException;

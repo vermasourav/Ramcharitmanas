@@ -19,25 +19,25 @@
     <bool name="feature_onboarding">true</bool>
     <bool name="feature_ux_tagging">true</bool>
 
-    <bool name="feature_menu_one">true</bool>
-    <bool name="feature_menu_two">true</bool>
-    <bool name="feature_menu_three">true</bool>
+    <bool name="feature_menu_one">false</bool>
+    <bool name="feature_menu_two">false</bool>
+    <bool name="feature_menu_three">false</bool>
     <bool name="feature_menu_four">true</bool>
     <bool name="feature_menu_five">true</bool>
-    <bool name="feature_menu_six">true</bool>
+    <bool name="feature_menu_six">false</bool>
     <bool name="feature_menu_setting">true</bool>
     <bool name="feature_menu_about_us">true</bool>
-    <bool name="feature_menu_faq">true</bool>
-    <bool name="feature_menu_privacy">true</bool>
-    <bool name="feature_menu_terms_of_service">true</bool>
+    <bool name="feature_menu_faq">false</bool>
+    <bool name="feature_menu_privacy">false</bool>
+    <bool name="feature_menu_terms_of_service">false</bool>
     <bool name="feature_menu_version">true</bool>
 
-    <bool name="feature_rate_us">true</bool>
+    <bool name="feature_rate_us">false</bool>
     <bool name="feature_share_menu">true</bool>
 
 
     <string name="menu_nav_home" translatable="false">Home</string>
-    <string name="menu_nav_one" translatable="false">One</string>
+    <string name="menu_nav_one" translatable="false">@string/app_name</string>
     <string name="menu_nav_two" translatable="false">Two</string>
     <string name="menu_nav_three" translatable="false">Three</string>
     <string name="menu_nav_section_two_header" translatable="false">Communicate</string>
@@ -77,18 +77,34 @@
     </style>
 
 
-    <color name="dashboard_badge_bg_color">@color/app_200</color>
+    <color name="on_boarding_icon">@color/app_200</color>
+    <color name="on_boarding_button_text">@color/app_200</color>
 
+    <color name="on_boarding_active">@color/app_200</color>
+    <color name="on_boarding_background">#F0F4F3</color>
+    <color name="on_boarding_description_text">@android:color/black</color>
+    <color name="on_boarding_header_text">@android:color/black</color>
+    <color name="on_boarding_inactive">#C4C4C4</color>
+
+
+
+    <color name="dashboard_badge_bg_color">@color/app_200</color>
     <color name="dashboard_expandable_app_icon">@color/app_logo</color>
     <color name="dashboard_expandable_show_less">#FF0000</color>
     <color name="dashboard_expandable_show_more">#FF0000</color>
     <color name="dashboard_header_bg_color">#B2DFDB</color>
     <color name="dashboard_header_divider_color">#BDBDBD</color>
-    <dimen name="dashboard_image_max_height">40dp</dimen>
-    <dimen name="dashboard_image_max_width">40dp</dimen>
+    <dimen name="dashboard_image_max_height">80dp</dimen>
+    <dimen name="dashboard_image_max_width">80dp</dimen>
+
+    <integer name="dashboard_title_max_line">3</integer>
+    <integer name="dashboard_description_max_line">3</integer>
 
 
     <dimen name="expended_list_child_max_height">250dp</dimen>
+    <integer name="expended_list_title_max_line">2</integer>
+    <integer name="expended_list_child_title_max_line">2</integer>
+    <integer name="expended_list_child_description_max_line">4</integer>
 
 
 </resources>

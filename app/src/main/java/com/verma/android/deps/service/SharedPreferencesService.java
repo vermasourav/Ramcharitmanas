@@ -2,13 +2,11 @@ package com.verma.android.deps.service;
 
 import android.content.SharedPreferences;
 
-import javax.inject.Inject;
 
 public class SharedPreferencesService {
 
     public final SharedPreferences preferences;
 
-    @Inject
     public SharedPreferencesService(SharedPreferences sharedPreferences) {
         this.preferences = sharedPreferences;
     }

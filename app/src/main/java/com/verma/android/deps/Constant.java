@@ -3,7 +3,6 @@ package com.verma.android.deps;
 import android.annotation.SuppressLint;
 
 import com.verma.android.common.Utils;
-import com.verma.android.deps.models.base.SenderInfo;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -61,12 +60,5 @@ public class Constant {
     public String getTime() {
         SimpleDateFormat s = new SimpleDateFormat("ddMMyyyyhhmmss");
         return s.format(new Date());
-    }
-
-    public SenderInfo getSenderInfo(String key) {
-        return new SenderInfo()
-                .withAppVersion(Constant.instance().getVersion())
-                .withSender(Constant.instance().getDeviceId())
-                ;
     }
 }

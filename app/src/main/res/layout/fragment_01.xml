@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ /**
-  ~  * Created by VERMA on 1/2/21 10:11 AM
-  ~  * Copyright (c) 2021 . All rights reserved.
-  ~  * Last modified 23/9/20 3:51 AM
-  ~  */
+  ~ Created by: V3RMA SOURAV on 08/03/24, 3:18 pm
+  ~ Copyright © 2023 All rights reserved
+  ~ Class name : fragment_01.xml
+  ~ Last modified:  08/03/24, 2:04 am
+  ~ Location: Bangalore, India
+  ~
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,29 +16,47 @@
         <import type="com.verma.android.common.Utils" />
     </data>
 
+
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/LayoutViewTop"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="@color/appBackground">
+        android:orientation="vertical"
+        android:background="@color/appBackground"
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/menu_nav_one"
-            android:padding="20dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAlignment="center"
+            android:paddingTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:background="@color/appBackground"
+            android:textColor="@color/appTextColor"
+            android:text="@string/app_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tell_me_more_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="5"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/dashboard_text_color"
+            android:visibility="gone"
+            tools:text="@tools:sample/lorem/random"
             tools:visibility="visible" />
 
         <com.verma.android.dashboard.expendview.CustomExpandableListView
             android:id="@+id/expandable_listview"
-            android:paddingTop="20dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:visibility="gone"
             android:childDivider="@android:color/holo_red_dark"
             android:divider="#000000"
             android:dividerHeight="0dp"
@@ -45,9 +64,16 @@
             app:withImage= "true"
             app:withSorting="false"
             app:childMode="listMode"
-            tools:listitem="@layout/expended_view_childs">
+            tools:listitem="@layout/expended_view_dashboard">
         </com.verma.android.dashboard.expendview.CustomExpandableListView>
 
+        <include
+            android:id="@+id/dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appBackground"
+            layout="@layout/fragment_dashboard" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </layout>
