@@ -65,6 +65,7 @@ dependencies {
     implementation libs.preference
     implementation libs.core.ktx
     implementation libs.browser
+    implementation libs.rules
 
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
@@ -74,6 +75,8 @@ dependencies {
         exclude group: 'com.jraska', module: 'falcon'
     }
     androidTestImplementation(libs.espresso.contrib)
+    androidTestImplementation("androidx.test:core:1.7.0")
+
 
     // Verma implementation
     implementation libs.onboarding
